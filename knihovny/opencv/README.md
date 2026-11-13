@@ -204,7 +204,7 @@ print("Zvolený práh:", prah)
 
 Funkce vrací nalezený práh a výsledný obrázek. Typ prahování určuje konstanta: `THRESH_BINARY` (pixel nad prahem bílý), `THRESH_BINARY_INV` (obráceně), `THRESH_TRUNC`, `THRESH_TOZERO`. **Otsuova metoda** sama zvolí práh tak, aby se obě skupiny pixelů co nejvíce lišily, což funguje dobře u obrázků s výrazným pozadím a popředím.
 
-TODO: obrázek – Prompt: "Three-panel figure: a grayscale photo of coins on a table, its histogram-free binary threshold result with white coins on black background, and the Otsu result; Czech captions 'původní', 'práh 127', 'Otsu'; flat clean style."
+TODO: obrázek – Prompt: "Three-panel figure: a grayscale photo of coins on a table, its binary threshold result (fixed threshold 127) with white coins on black background, and the Otsu result; Czech captions 'původní', 'práh 127', 'Otsu'; flat clean style."
 
 ## Rozostření a vyhlazování
 
