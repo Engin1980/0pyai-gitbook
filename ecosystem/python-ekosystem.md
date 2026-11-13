@@ -202,6 +202,8 @@ TODO: obrázek – Prompt: "Screenshot of a Python debugger paused on a line mar
 
 Pro práci s daty a při výuce se hojně využívá další způsob spouštění kódu: **Jupyter Notebook**. Notebook je dokument složený z buněk. Buňka může obsahovat kód, který lze spustit samostatně, nebo formátovaný text v Markdownu. Výsledek spuštěné buňky, včetně tabulek a grafů, se zobrazí přímo pod ní. Stav proměnných se mezi buňkami zachovává, takže data můžete načíst jednou a pak s nimi experimentovat v dalších krocích, aniž byste museli vše spouštět od začátku.
 
+![Jupyter Notebook](../imgs/jupyter.png)
+
 Notebooky mají příponu `.ipynb`. Nainstalujete a spustíte je například takto:
 
 ```console
