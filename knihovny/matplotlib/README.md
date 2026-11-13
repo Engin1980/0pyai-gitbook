@@ -269,7 +269,7 @@ Parametr `dpi` určuje rozlišení rastrových obrázků (běžně 150 až 300) 
 1. Vykreslete v jednom grafu funkce `x`, `x²` a `x³` na intervalu 0 až 3 s popisky os, titulkem a legendou. Každou čáru nastavte jinou barvou a stylem.
 2. Vygenerujte 200 náhodných bodů (x, y) z normálního rozdělení a zobrazte je bodovým grafem. Barvu bodů odvoďte od vzdálenosti od počátku.
 3. Pro seznam předmětů a počtů studentů nakreslete sloupcový graf s popisky pod sloupci.
-4. Pomocí `subplots` vytvořte obrázek se dvěma grafy vedle sebe: histogram 1000 náhodných čísel a jejich krabicový přehled po prvních 100 hodnotách (pro druhý graf zvolte libovolný typ). Uložte jej jako PNG.
+4. Pomocí `subplots` vytvořte obrázek se dvěma grafy vedle sebe: histogram 1000 náhodných čísel a spojnicový graf jejich kumulativního součtu (`np.cumsum`). Uložte jej jako PNG.
 
 ## Shrnutí
 
