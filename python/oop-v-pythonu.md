@@ -32,7 +32,7 @@ Podle konvence se názvy tříd píšou ve stylu `CamelCase`. Třídu definujeme
 
 Metoda `__init__` je **inicializátor** (v jiných jazycích konstruktor), který se zavolá automaticky při vytvoření instance a nastaví její počáteční stav. První parametr každé metody se podle konvence jmenuje **`self`** a odkazuje na instanci, na které je metoda volána. Python ho při volání `rex.stekni()` doplní sám, takže ho při volání neuvádíme. Pomocí `self.jmeno` ukládáme data do instance. Těmto hodnotám se říká **atributy**.
 
-![Třída - Instance](.gitbook/assets/class-instance.png)
+![Třída - Instance](../imgs/class-instance.png)
 
 ### Atributy třídy a metody třídy
 

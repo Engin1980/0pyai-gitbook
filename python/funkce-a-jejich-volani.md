@@ -14,7 +14,7 @@ zprava = pozdrav("Jana")
 print(zprava)    # Ahoj, Jana!
 ```
 
-![Funkce](.gitbook/assets/function.png)
+![Funkce](../imgs/function.png)
 
 Funkce, která neobsahuje `return` nebo používá `return` bez hodnoty, vrací `None`. Z funkce lze vrátit více hodnot najednou, ve skutečnosti se vrací jedna n-tice, kterou si lze hned rozbalit:
 
@@ -271,7 +271,7 @@ vypis_info(jmeno="Jana", vek=25)
 # vek = 25
 ```
 
-![Argumenty funkce](.gitbook/assets/function-args.png)
+![Argumenty funkce](../imgs/function-args.png)
 
 Oba zápisy lze kombinovat s běžnými parametry. Pořadí v definici je pevné: běžné parametry, potom `*args`, pak pojmenované parametry a nakonec `**kwargs`.
 
