@@ -8,11 +8,11 @@
 
 ## Python
 
-* [Představení jazyka](predstaveni-jazyka.md)
-* [Základní datové struktury](zakladni-datove-struktury.md)
-* [Funkce a jejich volání](funkce-a-jejich-volani.md)
-* [OOP v Pythonu](oop-v-pythonu.md)
-* [Praktické přístupy](prakticke-pristupy.md)
+* [Představení jazyka](python/predstaveni-jazyka.md)
+* [Základní datové struktury](python/zakladni-datove-struktury.md)
+* [Funkce a jejich volání](python/funkce-a-jejich-volani.md)
+* [OOP v Pythonu](python/oop-v-pythonu.md)
+* [Praktické přístupy](python/prakticke-pristupy.md)
 
 ## Knihovny
 
