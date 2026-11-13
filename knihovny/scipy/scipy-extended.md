@@ -197,11 +197,11 @@ V mnoha úlohách (sítě, textová data, diskretizace rovnic) jsou matice velk�
 ```python
 from scipy import sparse
 
-hustaMat = np.zeros((1000, 1000))
-hustaMat[0, 1] = 5
-hustaMat[500, 500] = 3
+plna = np.zeros((1000, 1000))
+plna[0, 1] = 5
+plna[500, 500] = 3
 
-ridka = sparse.csr_matrix(hustaMat)
+ridka = sparse.csr_matrix(plna)
 print(ridka.nnz)                  # počet nenulových prvků: 2
 print(ridka.data, ridka.indices)
 
