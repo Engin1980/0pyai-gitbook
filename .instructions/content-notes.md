@@ -18,15 +18,15 @@ Níže jsem původní seznamy proškrtal a rozdělil.
 - Změna tvaru pole (`reshape`)
 - Broadcasting
 - Generování náhodných čísel
+- Transpozice polí
+- Spojování a rozdělování polí
 
 **Rozšiřující**
 
-- Transpozice polí
 - Kopie a pohledy na pole (Copy vs. View)
 - Boolean Masking
 - Podmíněný výběr (`where`)
 - Univerzální funkce (`ufuncs`)
-- Spojování a rozdělování polí
 - Matice a lineární algebra (`numpy.linalg`)
 - Standardní odchylka a rozptyl
 - Práce s `NaN` a `Inf`
@@ -100,7 +100,6 @@ Níže jsem původní seznamy proškrtal a rozdělil.
 - Vazba na NumPy
 - Struktura knihovny a její moduly
 - Numerická integrace (`scipy.integrate`)
-- Řešení diferenciálních rovnic (`solve_ivp`)
 - Optimalizace (`scipy.optimize`)
 - Hledání kořenů rovnic
 - Minimalizace funkcí
@@ -108,11 +107,14 @@ Níže jsem původní seznamy proškrtal a rozdělil.
 - Pravděpodobnostní rozdělení
 - Statistické testování
 - Interpolace dat (`scipy.interpolate`)
+- Lineární algebra (`scipy.linalg`)
+- Řešení soustav lineárních rovnic
+
 
 **Rozšiřující**
 
-- Lineární algebra (`scipy.linalg`)
-- Řešení soustav lineárních rovnic
+
+- Řešení diferenciálních rovnic (`solve_ivp`)
 - Vlastní čísla a vlastní vektory
 - Regresní analýza
 - Prokládání křivek (`curve_fit`)
@@ -140,6 +142,9 @@ Níže jsem původní seznamy proškrtal a rozdělil.
 - Prahování obrázků (`threshold`)
 - Rozostření a vyhlazování
 - Detekce hran (Canny)
+- Morfologické operace
+- Eroze a dilatace
+- Práce s kamerou
 
 **Rozšiřující**
 
@@ -148,8 +153,6 @@ Níže jsem původní seznamy proškrtal a rozdělil.
 - Rotace a zrcadlení obrázků
 - Adaptivní prahování
 - Gaussovský a mediánový filtr
-- Morfologické operace
-- Eroze a dilatace
 - Detekce kontur (`findContours`)
 - Detekce geometrických tvarů
 - Maskování obrázků
@@ -158,7 +161,6 @@ Níže jsem původní seznamy proškrtal a rozdělil.
 - Detekce pohybu
 - Detekce objektů
 - Haar Cascade Classifier
-- Práce s kamerou
 
 ## **12. PyTorch Lightning**
 
