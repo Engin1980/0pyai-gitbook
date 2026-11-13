@@ -1,0 +1,2 @@
+# Funkce a jejich volání
+
