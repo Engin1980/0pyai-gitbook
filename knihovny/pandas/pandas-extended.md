@@ -15,6 +15,8 @@ prodeje = pd.DataFrame({
 })
 ```
 
+<table><thead><tr><th width="124">Město</th><th width="120">Produkt</th><th width="133">Množství</th><th width="97">Cena</th></tr></thead><tbody><tr><td>Praha</td><td>A</td><td>10</td><td>100</td></tr><tr><td>Praha</td><td>B</td><td>5</td><td>200</td></tr><tr><td>Brno</td><td>A</td><td>8</td><td>100</td></tr><tr><td>Brno</td><td>B</td><td>2</td><td>200</td></tr><tr><td>Praha</td><td>A</td><td>4</td><td>100</td></tr></tbody></table>
+
 ## Odstraňování duplicit
 
 Při slučování dat z více zdrojů nebo opakovaném importu se často objeví stejný záznam vícekrát. Metoda `duplicated` vrátí logickou masku řádků, které jsou duplicitou dřívějšího řádku, a `drop_duplicates` je odstraní.
@@ -74,7 +76,7 @@ Metoda `apply` volá funkci v cyklu v Pythonu, a proto je výrazně pomalejší 
 
 ## Seskupování dat (groupby)
 
-Metoda **`groupby`** realizuje princip *rozděl – aplikuj – spoj* (*split-apply-combine*): data se rozdělí do skupin podle hodnot sloupce, na každou skupinu se použije operace a výsledky se opět spojí do jedné tabulky.
+Metoda **`groupby`** realizuje princip _rozděl – aplikuj – spoj_ (_split-apply-combine_): data se rozdělí do skupin podle hodnot sloupce, na každou skupinu se použije operace a výsledky se opět spojí do jedné tabulky.
 
 ```python
 prodeje["trzba"] = prodeje["mnozstvi"] * prodeje["cena"]
@@ -153,7 +155,7 @@ Parametr `how` určuje, které řádky se zachovají: `inner` jen ty s klíčem 
 
 TODO: obrázek – Prompt: "Four small Venn-style diagrams showing merge join types for two tables joined on a key: inner, left, right and outer, with the kept region shaded in each; short Czech captions under each; flat colours, light background."
 
-## Kontingenční tabulky (pivot_table)
+## Kontingenční tabulky (pivot\_table)
 
 **Kontingenční tabulka** přeskupí data tak, že hodnoty jednoho sloupce se stanou řádky, hodnoty jiného sloupce sloupci a v buňkách je agregovaná hodnota. Je to totéž, co umí kontingenční tabulky v Excelu.
 
