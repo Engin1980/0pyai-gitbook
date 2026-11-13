@@ -39,6 +39,8 @@ x = [1, 2, 3]
 print(type(x))      # <class 'list'>
 ```
 
+TODO: obrázek – Prompt: "Flat vector illustration, light background: a name tag labelled 'x' attached by a string to a box with the number 5, then the same tag moved to a box with the text 'pět', then to a box with a list [1, 2, 3]; three small panels left to right, caption 'Proměnná je jmenovka, typ má hodnota'."
+
 Funkce `type()` zjistí typ objektu a funkce `isinstance()` umožňuje ověřit, zda objekt patří k určitému typu:
 
 ```python
@@ -107,6 +109,8 @@ def pust_zvuk(objekt):
 pust_zvuk(Pes())      # Haf!
 pust_zvuk(Robot())    # Bzzzt!
 ```
+
+TODO: obrázek – Prompt: "Friendly flat vector illustration: a rubber duck, a toy robot and a dog each next to a speech bubble with different sounds, all pointing to a function box labelled 'pust_zvuk(objekt)' that only requires 'umí ozvi_se()'; light background, Czech labels."
 
 Pokud bychom funkci předali objekt, který metodu `ozvi_se` nemá, skončí běh chybou `AttributeError`. V Pythonu se běžně používá přístup označovaný zkratkou **EAFP** (*Easier to Ask Forgiveness than Permission*, tedy „je jednodušší žádat o odpuštění než o svolení“). Místo předchozí kontroly typu se operace rovnou provede a případná chyba se ošetří:
 
@@ -209,7 +213,7 @@ muj_program.py:5: error: Argument 1 to "secti" has incompatible type "str"; expe
 
 VS Code s rozšířením Pylance i PyCharm provádějí podobnou kontrolu přímo při psaní a chyby podtrhují v editoru.
 
-TODO: obrázek – editor s podtrženým argumentem funkce, který má špatný typ, a vysvětlením chyby
+TODO: obrázek – Prompt: "Screenshot of VS Code with Pylance showing the call secti('a', 'b') underlined with a red wavy line and a hover tooltip saying 'Argument of type \"Literal['a']\" cannot be assigned to parameter \"a\" of type \"int\"'; dark theme."
 
 ### Složitější typy
 

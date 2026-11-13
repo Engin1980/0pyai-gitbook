@@ -50,7 +50,7 @@ Níže najdete postup pro jednotlivé operační systémy. Přepínejte mezi zá
 {% tab title="Windows" %}
 Základní cestou je stažení instalátoru z oficiálního webu [python.org](https://www.python.org/downloads/). Při spuštění instalátoru je důležité zaškrtnout volbu „Add python.exe to PATH“. Díky ní půjde příkaz `python` spustit z libovolné složky v terminálu.
 
-TODO: obrázek – úvodní obrazovka instalátoru Pythonu na Windows se zvýrazněným zaškrtávacím políčkem „Add python.exe to PATH“
+TODO: obrázek – Prompt: "Screenshot of the Python installer start window on Windows 11, the checkbox 'Add python.exe to PATH' at the bottom ticked and highlighted with a red rectangle, 'Install Now' button visible, clean and realistic."
 
 {% hint style="warning" %}
 Bez zaškrtnutí volby PATH Windows příkaz `python` nenajde. Jde o jednu z nejčastějších začátečnických chyb.
@@ -172,11 +172,11 @@ Program v Pythonu je v zásadě textový soubor, takže ho lze psát i v Poznám
 
 **Visual Studio Code** (VS Code) je lehký, zdarma dostupný editor od Microsoftu. Sám o sobě Python příliš neumí, ale po instalaci rozšíření *Python* (a obvykle také *Pylance* pro analýzu kódu) z něj vznikne plnohodnotné vývojové prostředí. Je univerzální, takže stejný editor využijete i pro jiné jazyky, Markdown nebo konfigurační soubory.
 
-TODO: obrázek – okno VS Code s otevřeným Python souborem, integrovaným terminálem a výběrem interpretu ve stavovém řádku
+TODO: obrázek – Prompt: "Screenshot of Visual Studio Code in dark theme with a short Python file open, the integrated terminal at the bottom showing program output, and the selected Python interpreter shown in the status bar; callout arrows labelled 'Editor', 'Terminál' and 'Interpret'."
 
 **PyCharm** od společnosti JetBrains je naproti tomu specializované prostředí určené právě pro Python. Nabízí pokročilé refaktorování, silnou analýzu kódu, integrovaný debugger a práci s virtuálními prostředími hned po instalaci. Existuje zdarma dostupná edice Community a placená Professional, která navíc podporuje například webové frameworky a práci s databázemi. Za svou komplexnost si PyCharm žádá více paměti a delší dobu spouštění.
 
-TODO: obrázek – okno PyCharm s otevřeným projektem, stromem souborů a spuštěným programem
+TODO: obrázek – Prompt: "Screenshot of the PyCharm IDE with an open Python project, the project file tree on the left, a code editor in the centre and the Run panel at the bottom showing the output of a finished program; callout arrows labelled 'Projekt', 'Editor' and 'Spuštění'."
 
 Která volba je lepší, je především věcí zvyku. Pro tento kurz je vhodné jakékoliv z nich, důležité je naučit se základní schopnosti, které obě prostředí sdílejí: spuštění souboru jedním kliknutím, vybrání správného interpretu, práce s integrovaným terminálem a ladění pomocí breakpointů.
 
@@ -196,7 +196,7 @@ python -c "print(sum(range(10)))"
 
 Při ladění je užitečný *debugger*. Na řádek, kde chcete běh programu zastavit, umístíte breakpoint, program spustíte v režimu ladění a pak můžete krokovat řádek po řádku a sledovat hodnoty proměnných. Je to mnohem efektivnější než zahlcovat kód voláním `print`.
 
-TODO: obrázek – debugger zastavený na breakpointu, s viditelným panelem proměnných a tlačítky pro krokování
+TODO: obrázek – Prompt: "Screenshot of a Python debugger paused on a line marked with a red breakpoint dot, the highlighted current line, a Variables panel showing a few values and the step over / step into / continue buttons in the toolbar; callout labels in Czech."
 
 ## Jupyter Notebook
 
@@ -211,7 +211,7 @@ jupyter notebook
 
 Příkaz otevře v prohlížeči webové rozhraní. Notebooky lze ale otevírat také přímo ve VS Code nebo v PyCharm Professional, případně využít online službu Google Colab, která nevyžaduje žádnou instalaci.
 
-TODO: obrázek – Jupyter Notebook se dvěma buňkami (kód a Markdown) a výstupem pod spuštěnou buňkou
+TODO: obrázek – Prompt: "Screenshot of a Jupyter Notebook in the browser with a Markdown cell containing a heading, a code cell that plots a small line chart and the chart displayed directly below the cell; callout labels 'Buňka s textem', 'Buňka s kódem' and 'Výstup'."
 
 Notebooky jsou ideální pro průzkum dat, prototypování a prezentaci výsledků. Pro větší aplikace se však příliš nehodí.
 
@@ -348,7 +348,7 @@ source .venv/bin/activate
 
 Po aktivaci se před výzvou terminálu objeví název prostředí, například `(.venv)`. Příkazy `python` a `pip` nyní odkazují na izolované prostředí. Aktivaci ukončíte příkazem `deactivate`.
 
-TODO: obrázek – terminál s aktivovaným virtuálním prostředím, kde je před výzvou vidět `(.venv)`
+TODO: obrázek – Prompt: "Screenshot of a PowerShell terminal where the prompt starts with '(.venv)' in front of the project path after running the activation script; the '(.venv)' part highlighted with a coloured rectangle and a callout 'Aktivní prostředí'."
 
 {% hint style="warning" %}
 Složku `.venv` nikdy neukládáme do verzovacího systému Git, přidáme ji do `.gitignore`. Je závislá na konkrétním počítači a lze ji kdykoliv znovu vytvořit. Do repozitáře patří pouze soubor, který popisuje, jaké závislosti projekt potřebuje. O těch pojednává následující část.
@@ -370,6 +370,8 @@ pip show numpy
 ```
 
 Příkaz `pip install` si stáhne balíček z PyPI včetně všech knihoven, na kterých balíček závisí (tzv. tranzitivní závislosti). Doporučeným zápisem je `python -m pip install ...`, protože tím máte jistotu, že pip patří ke stejnému interpretu, který právě používáte.
+
+TODO: obrázek – Prompt: "Flat vector infographic, light background: a laptop with a terminal running 'pip install requests' on the left, an arrow to a cloud labelled 'PyPI' in the middle, and an arrow back to a box labelled '.venv / site-packages' on the right; short Czech labels 'Stažení' and 'Instalace do prostředí'."
 
 Nástroj **uv** je novější alternativa, kterou vyvíjí společnost Astral. Je napsán v jazyce Rust a je výrazně rychlejší než pip. Jedním nástrojem nahrazuje několik dalších: umí vytvářet virtuální prostředí, instalovat balíčky, spravovat verze samotného Pythonu a řídit celý projekt. Ve své základní podobě je rozhraní podobné pipu:
 

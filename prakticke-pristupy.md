@@ -125,6 +125,8 @@ Každá zpráva má **úroveň závažnosti**. Čím vyšší úroveň, tím dů
 
 Nastavíme minimální úroveň a zprávy pod touto úrovní se zahodí. Při vývoji tak můžeme zapnout `DEBUG` a v produkci stačí `INFO` nebo `WARNING`.
 
+TODO: obrázek – Prompt: "Flat vector infographic: five stacked horizontal bars rising in severity from DEBUG (grey) through INFO (blue), WARNING (yellow) and ERROR (orange) to CRITICAL (red), with a vertical dashed line at WARNING labelled 'minimální úroveň' showing that lower levels are filtered out; Czech labels."
+
 ```python
 import logging
 
@@ -313,6 +315,8 @@ Pro načítání vždy používejte **`yaml.safe_load`**, nikoli `yaml.load`. Fu
 ### Který formát zvolit
 
 Formáty se liší zaměřením. JSON je ideální pro strojovou výměnu dat mezi programy a pro API. CSV je vhodné pro tabulková data s pevnými sloupci, zejména když s nimi pracuje i Excel. YAML se hodí pro konfigurace upravované ručně, kde oceníme komentáře a přehlednost.
+
+TODO: obrázek – Prompt: "Three code-card panels side by side showing the same record (jmeno Jana, vek 21, mesto Brno) in JSON, CSV and YAML syntax, each with a small icon and a one-line Czech caption ('API a výměna dat', 'tabulky', 'konfigurace'); monospace font, light background."
 
 ```mermaid
 flowchart TD

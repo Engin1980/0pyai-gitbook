@@ -32,7 +32,7 @@ Podle konvence se názvy tříd píšou ve stylu `CamelCase`. Třídu definujeme
 
 Metoda `__init__` je **inicializátor** (v jiných jazycích konstruktor), který se zavolá automaticky při vytvoření instance a nastaví její počáteční stav. První parametr každé metody se podle konvence jmenuje **`self`** a odkazuje na instanci, na které je metoda volána. Python ho při volání `rex.stekni()` doplní sám, takže ho při volání neuvádíme. Pomocí `self.jmeno` ukládáme data do instance. Těmto hodnotám se říká **atributy**.
 
-TODO: obrázek – schéma třídy `Pes` jako šablony a dvou instancí `rex` a `fido` s vlastními hodnotami atributů
+TODO: obrázek – Prompt: "Flat vector illustration: a blueprint / cookie-cutter labelled 'třída Pes' (atributy jmeno, vek; metoda stekni) with two arrows to two dog figures labelled 'rex' (vek 3) and 'fido' (vek 5), each with its own values; light background, Czech labels."
 
 ### Atributy třídy a metody třídy
 
@@ -110,6 +110,8 @@ print(u.zustatek())      # 150
 # print(u.__zustatek)    # AttributeError
 print(u._Ucet__zustatek) # 150, technicky to jde, ale takto se to nedělá
 ```
+
+TODO: obrázek – Prompt: "Flat vector illustration of encapsulation: a capsule labelled 'Ucet' whose hidden core '__zustatek' is protected inside, with a few public buttons on the surface 'vloz()' and 'zustatek()' as the only way in; an outside hand pointing to the core with a dashed arrow and a small note 'nedoporučeno'; Czech labels."
 
 Filozofie Pythonu je shrnuta větou *„We are all consenting adults here“*, tedy že programátoři jsou dospělí a jsou schopni respektovat konvence i bez vynucování. Pro běžné atributy proto stačí jedno podtržítko a dvě se používají jen výjimečně.
 

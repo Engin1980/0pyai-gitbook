@@ -163,6 +163,8 @@ print(a ^ b)    # symetrický rozdíl: {1, 2, 5}
 print(list(set([1, 2, 2, 3, 3, 3])))   # rychlé odstranění duplicit
 ```
 
+TODO: obrázek – Prompt: "Four small Venn diagrams of two overlapping circles A={1,2,3,4} and B={3,4,5}, each with a different region shaded: union (A | B), intersection (A & B), difference (A - B), symmetric difference (A ^ B); each with its Python operator as caption; flat colours, light background."
+
 Prázdnou množinu je nutné vytvořit pomocí `set()`, protože `{}` označuje prázdný slovník.
 
 ### Slovník (dictionary)
@@ -314,6 +316,8 @@ print(c[::-1])     # obrácené pořadí
 
 print("Python"[1:4])    # "yth"
 ```
+
+TODO: obrázek – Prompt: "Clean diagram of a list [0,1,2,3,4,5,6,7,8,9] drawn as a row of boxes, with positive indices 0..9 above and negative indices -10..-1 below, and a bracket highlighting the slice [2:5] (elements 2, 3, 4) with the note 'začátek zahrnut, konec ne'; flat style, Czech labels."
 
 Řez vždy vytvoří novou (mělkou) kopii. Proto `c[:]` je rychlý způsob, jak seznam zkopírovat.
 
