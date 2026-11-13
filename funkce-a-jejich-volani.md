@@ -14,7 +14,7 @@ zprava = pozdrav("Jana")
 print(zprava)    # Ahoj, Jana!
 ```
 
-![Funkce](./imgs/function.png)
+![Funkce](.gitbook/assets/function.png)
 
 Funkce, která neobsahuje `return` nebo používá `return` bez hodnoty, vrací `None`. Z funkce lze vrátit více hodnot najednou, ve skutečnosti se vrací jedna n-tice, kterou si lze hned rozbalit:
 
@@ -26,7 +26,7 @@ nejmensi, nejvetsi = min_max([4, 8, 1, 9])
 print(nejmensi, nejvetsi)    # 1 9
 ```
 
-První řádek tvoří označení funkce a bezprostředně pod ním se podle konvence píše **dokumentační řetězec** (*docstring*) v trojitých uvozovkách. Zobrazí ho nápověda `help()` a editory. Pro čitelnost lze doplnit i type hints z druhé kapitoly:
+První řádek tvoří označení funkce a bezprostředně pod ním se podle konvence píše **dokumentační řetězec** (_docstring_) v trojitých uvozovkách. Zobrazí ho nápověda `help()` a editory. Pro čitelnost lze doplnit i type hints z druhé kapitoly:
 
 ```python
 def obsah_obdelniku(sirka: float, vyska: float) -> float:
@@ -73,7 +73,7 @@ Pokud nechceme měnit původní data, je třeba vytvořit kopii, nebo ještě l�
 
 ## Pojmenované argumenty a výchozí parametry
 
-Argumenty lze předávat podle pozice, jak je zvykem z jiných jazyků, nebo podle jména. U **pojmenovaných argumentů** (*keyword arguments*) uvedeme při volání název parametru. Pořadí pak nehraje roli a kód je výrazně čitelnější, zvláště u funkcí s více parametry.
+Argumenty lze předávat podle pozice, jak je zvykem z jiných jazyků, nebo podle jména. U **pojmenovaných argumentů** (_keyword arguments_) uvedeme při volání název parametru. Pořadí pak nehraje roli a kód je výrazně čitelnější, zvláště u funkcí s více parametry.
 
 ```python
 def vytvor_uzivatele(jmeno, vek, mesto):
@@ -196,7 +196,7 @@ print([zdvoj(n) for n in cisla])
 print([n for n in cisla if n % 2 == 0])
 ```
 
-Funkce lze také definovat uvnitř jiných funkcí. Vnitřní funkce si pamatuje proměnné z okolí, ve kterém vznikla, což se nazývá **uzávěr** (*closure*). Díky tomu lze vyrábět „továrny na funkce“:
+Funkce lze také definovat uvnitř jiných funkcí. Vnitřní funkce si pamatuje proměnné z okolí, ve kterém vznikla, což se nazývá **uzávěr** (_closure_). Díky tomu lze vyrábět „továrny na funkce“:
 
 ```python
 def nasobicka(faktor):
@@ -248,7 +248,7 @@ print(studenti)    # [('Jana', 90), ('Eva', 82), ('Petr', 75)]
 
 Lambda může obsahovat pouze jeden výraz, nikoli více příkazů, cykly nebo přiřazení. Pro složitější logiku je třeba použít klasickou funkci pomocí `def`. Přiřazování lambdy do proměnné, jak je ukázáno v prvním příkladu, je pouze demonstrace: pro funkci, která má jméno, je podle stylových doporučení lepší `def`, protože se pak lépe čte ve výpisu chyb.
 
-## Proměnný počet argumentů: *args a **kwargs
+## Proměnný počet argumentů: \*args a \*\*kwargs
 
 Někdy předem nevíme, kolik argumentů funkce dostane. Pro tyto případy slouží dva speciální zápisy.
 
@@ -271,7 +271,7 @@ vypis_info(jmeno="Jana", vek=25)
 # vek = 25
 ```
 
-![Argumenty funkce](./imgs/function-args.png)
+![Argumenty funkce](.gitbook/assets/function-args.png)
 
 Oba zápisy lze kombinovat s běžnými parametry. Pořadí v definici je pevné: běžné parametry, potom `*args`, pak pojmenované parametry a nakonec `**kwargs`.
 

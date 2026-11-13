@@ -4,13 +4,9 @@
 
 ## Ekosystém
 
-***
-
 * [Python Ekosystém](python-ekosystem.md)
 
 ## Python
-
-***
 
 * [Představení jazyka](predstaveni-jazyka.md)
 * [Základní datové struktury](zakladni-datove-struktury.md)
@@ -20,9 +16,15 @@
 
 ## Knihovny
 
-* [Numpy](knihovny/numpy.md)
-* [Pandas](knihovny/pandas.md)
-* [Matplotlib](knihovny/matplotlib.md)
-* [Scipy](knihovny/scipy.md)
-* [OpenCV](knihovny/opencv.md)
-* [Pytorch Lightning](knihovny/pytorch-lightning.md)
+* [Numpy](knihovny/numpy/README.md)
+  * [Numpy - Extended](knihovny/numpy/numpy-extended.md)
+* [Pandas](knihovny/pandas/README.md)
+  * [Pandas - Extended](knihovny/pandas/pandas-extended.md)
+* [Matplotlib](knihovny/matplotlib/README.md)
+  * [Matplotlib - Extended](knihovny/matplotlib/matplotlib-extended.md)
+* [Scipy](knihovny/scipy/README.md)
+  * [Scipy - Extended](knihovny/scipy/scipy-extended.md)
+* [OpenCV](knihovny/opencv/README.md)
+  * [OpenCV - Extended](knihovny/opencv/opencv-extended.md)
+* [Pytorch Lightning](knihovny/pytorch-lightning/README.md)
+  * [Pytorch Lightning - Extended](knihovny/pytorch-lightning/pytorch-lightning-extended.md)

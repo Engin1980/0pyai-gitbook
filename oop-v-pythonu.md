@@ -32,7 +32,7 @@ Podle konvence se názvy tříd píšou ve stylu `CamelCase`. Třídu definujeme
 
 Metoda `__init__` je **inicializátor** (v jiných jazycích konstruktor), který se zavolá automaticky při vytvoření instance a nastaví její počáteční stav. První parametr každé metody se podle konvence jmenuje **`self`** a odkazuje na instanci, na které je metoda volána. Python ho při volání `rex.stekni()` doplní sám, takže ho při volání neuvádíme. Pomocí `self.jmeno` ukládáme data do instance. Těmto hodnotám se říká **atributy**.
 
-![Třída - Instance](./imgs/class-instance.png)
+![Třída - Instance](.gitbook/assets/class-instance.png)
 
 ### Atributy třídy a metody třídy
 
@@ -79,15 +79,15 @@ print(Obdelnik.je_platny_rozmer(-1))   # False
 
 ## Zapouzdření
 
-**Zapouzdření** (*encapsulation*) znamená, že vnitřní stav objektu je chráněn před neřízenými zásahy zvenčí a objekt s okolím komunikuje přes dobře definované rozhraní. Rozhraní tvoří metody, vnitřní stav atributy, které by neměl nikdo měnit libovolně. Například bankovní účet by neměl umožnit nastavit zápornou hodnotu zůstatku přímým přiřazením.
+**Zapouzdření** (_encapsulation_) znamená, že vnitřní stav objektu je chráněn před neřízenými zásahy zvenčí a objekt s okolím komunikuje přes dobře definované rozhraní. Rozhraní tvoří metody, vnitřní stav atributy, které by neměl nikdo měnit libovolně. Například bankovní účet by neměl umožnit nastavit zápornou hodnotu zůstatku přímým přiřazením.
 
 Python na rozdíl od jazyků jako Java nebo C++ nemá klíčová slova `private` či `protected`. Místo toho se opírá o **konvence pojmenování**:
 
-| Zápis | Význam |
-| --- | --- |
-| `jmeno` | veřejný atribut, součást rozhraní třídy |
-| `_jmeno` | „chráněný“ atribut, jde o interní věc, ale technicky je přístupný |
-| `__jmeno` | „soukromý“ atribut, jehož jméno Python upraví |
+| Zápis     | Význam                                                            |
+| --------- | ----------------------------------------------------------------- |
+| `jmeno`   | veřejný atribut, součást rozhraní třídy                           |
+| `_jmeno`  | „chráněný“ atribut, jde o interní věc, ale technicky je přístupný |
+| `__jmeno` | „soukromý“ atribut, jehož jméno Python upraví                     |
 
 Jedno podtržítko je pouhé upozornění programátorům: „toto je interní detail, nesahej na to“. Python tomu nijak nebrání. Dvě podtržítka na začátku (a nejvýše jedno na konci) spouštějí **name mangling**: interpret atribut `__zustatek` ve třídě `Ucet` skrytě přejmenuje na `_Ucet__zustatek`. Slouží to hlavně k ochraně proti kolizi názvů při dědičnosti a neposkytuje to skutečnou ochranu.
 
@@ -111,9 +111,9 @@ print(u.zustatek())      # 150
 print(u._Ucet__zustatek) # 150, technicky to jde, ale takto se to nedělá
 ```
 
-TODO: obrázek – Prompt: "Flat vector illustration of encapsulation: a capsule labelled 'Ucet' whose hidden core '__zustatek' is protected inside, with a few public buttons on the surface 'vloz()' and 'zustatek()' as the only way in; an outside hand pointing to the core with a dashed arrow and a small note 'nedoporučeno'; Czech labels."
+TODO: obrázek – Prompt: "Flat vector illustration of encapsulation: a capsule labelled 'Ucet' whose hidden core '\_\_zustatek' is protected inside, with a few public buttons on the surface 'vloz()' and 'zustatek()' as the only way in; an outside hand pointing to the core with a dashed arrow and a small note 'nedoporučeno'; Czech labels."
 
-Filozofie Pythonu je shrnuta větou *„We are all consenting adults here“*, tedy že programátoři jsou dospělí a jsou schopni respektovat konvence i bez vynucování. Pro běžné atributy proto stačí jedno podtržítko a dvě se používají jen výjimečně.
+Filozofie Pythonu je shrnuta větou _„We are all consenting adults here“_, tedy že programátoři jsou dospělí a jsou schopni respektovat konvence i bez vynucování. Pro běžné atributy proto stačí jedno podtržítko a dvě se používají jen výjimečně.
 
 ### Vlastnosti (property)
 
@@ -147,7 +147,7 @@ t.celsius = 30           # volá setter
 
 ## Dědičnost
 
-**Dědičnost** umožňuje vytvořit novou třídu na základě existující. Odvozená třída (*podtřída*) převezme atributy a metody své nadtřídy a může je rozšířit nebo upravit. Nadtřídu uvedeme v závorce za názvem třídy.
+**Dědičnost** umožňuje vytvořit novou třídu na základě existující. Odvozená třída (_podtřída_) převezme atributy a metody své nadtřídy a může je rozšířit nebo upravit. Nadtřídu uvedeme v závorce za názvem třídy.
 
 ```python
 class Zvire:
@@ -205,7 +205,7 @@ print(isinstance(rex, Zvire))    # True
 print(issubclass(Pes, Zvire))    # True
 ```
 
-Python podporuje i **vícenásobnou dědičnost**, kdy třída dědí z více nadtříd najednou (`class C(A, B)`). Pořadí, v jakém se při hledání metod třídy procházejí, určuje tzv. MRO (*method resolution order*), které zobrazí `C.__mro__`. Vícenásobná dědičnost se hodí především pro tzv. *mixiny*, tedy malé třídy přidávající jednu schopnost, a v běžném kódu se jí používá střídmě.
+Python podporuje i **vícenásobnou dědičnost**, kdy třída dědí z více nadtříd najednou (`class C(A, B)`). Pořadí, v jakém se při hledání metod třídy procházejí, určuje tzv. MRO (_method resolution order_), které zobrazí `C.__mro__`. Vícenásobná dědičnost se hodí především pro tzv. _mixiny_, tedy malé třídy přidávající jednu schopnost, a v běžném kódu se jí používá střídmě.
 
 ## Polymorfismus
 
@@ -253,7 +253,7 @@ print(Kruh(2).obsah())
 
 ## Kompozice
 
-Dědičnost vyjadřuje vztah **„je“** (pes *je* zvíře). Často je ale přirozenější vztah **„má“** (auto *má* motor). Ten se vyjadřuje **kompozicí**: objekt jedné třídy obsahuje jako atribut objekt jiné třídy a využívá jeho služeb.
+Dědičnost vyjadřuje vztah **„je“** (pes _je_ zvíře). Často je ale přirozenější vztah **„má“** (auto _má_ motor). Ten se vyjadřuje **kompozicí**: objekt jedné třídy obsahuje jako atribut objekt jiné třídy a využívá jeho služeb.
 
 ```python
 class Motor:
@@ -292,7 +292,7 @@ Používá se rada „**preferuj kompozici před dědičností**“. Dědičnost
 
 ## Magické metody
 
-**Magické metody** (také *dunder methods*, z anglického *double underscore*) jsou speciální metody s názvem obklopeným dvěma podtržítky na obou stranách, například `__init__`. Nevoláme je přímo, ale Python je volá sám při použití určitých operátorů a vestavěných funkcí. Implementací těchto metod naučíme své třídy chovat se jako vestavěné typy.
+**Magické metody** (také _dunder methods_, z anglického _double underscore_) jsou speciální metody s názvem obklopeným dvěma podtržítky na obou stranách, například `__init__`. Nevoláme je přímo, ale Python je volá sám při použití určitých operátorů a vestavěných funkcí. Implementací těchto metod naučíme své třídy chovat se jako vestavěné typy.
 
 ### Textová reprezentace: `__str__` a `__repr__`
 
@@ -374,7 +374,7 @@ print(v[0])          # 11
 print(list(v))       # [11, 22]
 ```
 
-Mezi další známé magické metody patří `__call__` (objekt lze volat jako funkci), `__contains__` (operátor `in`) nebo `__enter__` a `__exit__`, které umožňují použití objektu v příkazu `with`. S posledními dvěma se ještě setkáme při práci se soubory. Úplný seznam najdete v oficiální dokumentaci Pythonu v části *Data model*.
+Mezi další známé magické metody patří `__call__` (objekt lze volat jako funkci), `__contains__` (operátor `in`) nebo `__enter__` a `__exit__`, které umožňují použití objektu v příkazu `with`. S posledními dvěma se ještě setkáme při práci se soubory. Úplný seznam najdete v oficiální dokumentaci Pythonu v části _Data model_.
 
 ## Shrnutí
 
