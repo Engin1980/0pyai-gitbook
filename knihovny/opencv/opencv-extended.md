@@ -1,5 +1,7 @@
 # OpenCV - Extended
 
+> Rozšiřující část je nepovinná a slouží pouze jako další informační zdroj pro studenty.
+
 Rozšiřující část navazuje na základní kapitolu o OpenCV a ukazuje techniky, které z jednotlivých operací skládají užitečné aplikace: histogramy a barevné kanály, rotace a zrcadlení, adaptivní prahování, další filtry, nalezení kontur a tvarů, maskování, kreslení do obrázku, zpracování videa, detekci pohybu a základní detekci objektů. Všechny ukázky předpokládají:
 
 ```python

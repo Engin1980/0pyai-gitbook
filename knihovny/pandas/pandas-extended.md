@@ -1,5 +1,7 @@
 # Pandas - Extended
 
+> Rozšiřující část je nepovinná a slouží pouze jako další informační zdroj pro studenty.
+
 Rozšiřující část navazuje na základní kapitolu o Pandas a ukazuje nástroje, které se v praxi používají při skutečném zpracování dat: odstraňování duplicit, převody typů, aplikaci vlastních funkcí, seskupování a agregaci, spojování tabulek, kontingenční tabulky, práci s textem a časem a klouzavá okna. Jde o přehled možností, takže u každého tématu najdete stručné vysvětlení a typický příklad. Všechny ukázky předpokládají `import pandas as pd` a `import numpy as np`.
 
 Většina příkladů pracuje s touto malou tabulkou prodejů:

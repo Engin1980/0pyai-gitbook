@@ -1,5 +1,7 @@
 # SciPy - Extended
 
+> Rozšiřující část je nepovinná a slouží pouze jako další informační zdroj pro studenty.
+
 Rozšiřující část ukazuje další oblasti, které SciPy pokrývá. Nejde o látku k zapamatování, ale o přehled toho, co knihovna umí, abyste při narazení na odpovídající úlohu věděli, kde hledat. U každého tématu najdete stručné vysvětlení a minimální příklad. Předpokládáme:
 
 ```python

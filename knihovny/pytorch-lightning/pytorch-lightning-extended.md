@@ -1,5 +1,7 @@
 # PyTorch Lightning - Extended
 
+> Rozšiřující část je nepovinná a slouží pouze jako další informační zdroj pro studenty.
+
 Rozšiřující část navazuje na základní kapitolu a ukazuje, co všechno se v reálných projektech k jednoduchému trénování přidává: jak se počítají gradienty, jak se model hodnotí během trénování, jak se předchází přeučení, jak se výsledky zaznamenávají a ukládají a jak trénování zrychlit a rozšířit na více zařízení. Je to přehled možností. Podrobnosti najdete v dokumentaci na webu lightning.ai. Ukázky navazují na model `LitRegrese` ze základní části a předpokládají:
 
 ```python

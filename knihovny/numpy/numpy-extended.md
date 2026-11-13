@@ -1,5 +1,7 @@
 # Numpy - Extended
 
+> Rozšiřující část je nepovinná a slouží pouze jako další informační zdroj pro studenty.
+
 Tato rozšiřující část navazuje na základní kapitolu o NumPy. Nejde o nezbytné minimum, ale o přehled možností, které se v praxi velmi často hodí a které stojí za to znát, až základní práci s poli zvládnete. Podíváme se na rozdíl mezi kopií a pohledem, výběr prvků pomocí podmínek, univerzální funkce, lineární algebru, statistické míry rozptylu a práci s chybějícími či nekonečnými hodnotami. Ukázky předpokládají, že máte naimportováno `import numpy as np`.
 
 ## Kopie a pohledy na pole (Copy vs. View)
