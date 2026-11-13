@@ -14,7 +14,7 @@ zprava = pozdrav("Jana")
 print(zprava)    # Ahoj, Jana!
 ```
 
-TODO: obrázek – Prompt: "Flat vector illustration of a function as a machine: an input arrow labelled 'argumenty' enters a box labelled 'def pozdrav(jmeno)', an output arrow labelled 'return' leaves it; example values 'Jana' going in and 'Ahoj, Jana!' coming out; light background, Czech labels."
+![Funkce](./imgs/function.png)
 
 Funkce, která neobsahuje `return` nebo používá `return` bez hodnoty, vrací `None`. Z funkce lze vrátit více hodnot najednou, ve skutečnosti se vrací jedna n-tice, kterou si lze hned rozbalit:
 
@@ -271,7 +271,7 @@ vypis_info(jmeno="Jana", vek=25)
 # vek = 25
 ```
 
-TODO: obrázek – Prompt: "Flat vector diagram: on the left several loose positional values (1, 2, 3) funnel into a tuple box labelled '*args', and several labelled values (jmeno='Jana', vek=25) funnel into a dictionary box labelled '**kwargs'; light background, Czech captions."
+![Argumenty funkce](./imgs/function-args.png)
 
 Oba zápisy lze kombinovat s běžnými parametry. Pořadí v definici je pevné: běžné parametry, potom `*args`, pak pojmenované parametry a nakonec `**kwargs`.
 
