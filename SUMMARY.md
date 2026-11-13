@@ -20,4 +20,9 @@
 
 ## Knihovny
 
-* [Page 1](knihovny/page-1.md)
+* [Numpy](knihovny/numpy.md)
+* [Pandas](knihovny/pandas.md)
+* [Matplotlib](knihovny/matplotlib.md)
+* [Scipy](knihovny/scipy.md)
+* [OpenCV](knihovny/opencv.md)
+* [Pytorch Lightning](knihovny/pytorch-lightning.md)
