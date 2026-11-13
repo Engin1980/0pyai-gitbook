@@ -4,7 +4,7 @@
 
 ## Ekosystém
 
-* [Python Ekosystém](python-ekosystem.md)
+* [Python Ekosystém](ecosystem/python-ekosystem.md)
 
 ## Python
 
