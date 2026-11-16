@@ -163,6 +163,8 @@ print(a ^ b)    # symetrický rozdíl: {1, 2, 5}
 print(list(set([1, 2, 2, 3, 3, 3])))   # rychlé odstranění duplicit
 ```
 
+![Operace množin](../imgs/setOperations.jpg)
+
 TODO: obrázek – Prompt: "Four small Venn diagrams of two overlapping circles A={1,2,3,4} and B={3,4,5}, each with a different region shaded: union (A | B), intersection (A & B), difference (A - B), symmetric difference (A ^ B); each with its Python operator as caption; flat colours, light background."
 
 Prázdnou množinu je nutné vytvořit pomocí `set()`, protože `{}` označuje prázdný slovník.

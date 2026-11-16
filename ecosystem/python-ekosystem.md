@@ -213,8 +213,6 @@ jupyter notebook
 
 Příkaz otevře v prohlížeči webové rozhraní. Notebooky lze ale otevírat také přímo ve VS Code nebo v PyCharm Professional, případně využít online službu Google Colab, která nevyžaduje žádnou instalaci.
 
-TODO: obrázek – Prompt: "Screenshot of a Jupyter Notebook in the browser with a Markdown cell containing a heading, a code cell that plots a small line chart and the chart displayed directly below the cell; callout labels 'Buňka s textem', 'Buňka s kódem' and 'Výstup'."
-
 Notebooky jsou ideální pro průzkum dat, prototypování a prezentaci výsledků. Pro větší aplikace se však příliš nehodí.
 
 {% hint style="info" %}
@@ -373,7 +371,8 @@ pip show numpy
 
 Příkaz `pip install` si stáhne balíček z PyPI včetně všech knihoven, na kterých balíček závisí (tzv. tranzitivní závislosti). Doporučeným zápisem je `python -m pip install ...`, protože tím máte jistotu, že pip patří ke stejnému interpretu, který právě používáte.
 
-TODO: obrázek – Prompt: "Flat vector infographic, light background: a laptop with a terminal running 'pip install requests' on the left, an arrow to a cloud labelled 'PyPI' in the middle, and an arrow back to a box labelled '.venv / site-packages' on the right; short Czech labels 'Stažení' and 'Instalace do prostředí'."
+![PIP](../imgs/pip.png)
+
 
 Nástroj **uv** je novější alternativa, kterou vyvíjí společnost Astral. Je napsán v jazyce Rust a je výrazně rychlejší než pip. Jedním nástrojem nahrazuje několik dalších: umí vytvářet virtuální prostředí, instalovat balíčky, spravovat verze samotného Pythonu a řídit celý projekt. Ve své základní podobě je rozhraní podobné pipu:
 

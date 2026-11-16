@@ -111,7 +111,7 @@ print(u.zustatek())      # 150
 print(u._Ucet__zustatek) # 150, technicky to jde, ale takto se to nedělá
 ```
 
-TODO: obrázek – Prompt: "Flat vector illustration of encapsulation: a capsule labelled 'Ucet' whose hidden core '\_\_zustatek' is protected inside, with a few public buttons on the surface 'vloz()' and 'zustatek()' as the only way in; an outside hand pointing to the core with a dashed arrow and a small note 'nedoporučeno'; Czech labels."
+![Zapouzdření](../imgs/encap.png)
 
 Filozofie Pythonu je shrnuta větou _„We are all consenting adults here“_, tedy že programátoři jsou dospělí a jsou schopni respektovat konvence i bez vynucování. Pro běžné atributy proto stačí jedno podtržítko a dvě se používají jen výjimečně.
 
