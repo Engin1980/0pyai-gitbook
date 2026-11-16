@@ -52,7 +52,7 @@ Výstup `print(b)` je přehledně zformátován:
 
 Pole mohou mít libovolný počet dimenzí. Jednorozměrné pole si lze představit jako řadu čísel, dvourozměrné jako tabulku, třírozměrné jako „kostku“ čísel (například barevný obrázek s výškou, šířkou a barevnými kanály).
 
-TODO: obrázek – Prompt: "Clean educational illustration of NumPy arrays: a 1D array as a row of 4 numbered cells with shape (4,), a 2D array as a 2x3 grid with axis 0 pointing down and axis 1 pointing right and shape (2, 3), and a 3D array as a stacked cube of cells with axis 2; flat colours, Czech labels."
+![Numpy pole](../../imgs/numpyArrays.jpg)
 
 ## Dimenze a tvar pole
 
@@ -253,7 +253,7 @@ print(m.mean(axis=0))    # [2.5 3.5 4.5]
 print(m.max(axis=1))     # [3 6]
 ```
 
-TODO: obrázek – Prompt: "Two copies of a 2x3 matrix [[1,2,3],[4,5,6]]: in the left one vertical arrows collapse each column to the result row [5, 7, 9] labelled 'axis=0', in the right one horizontal arrows collapse each row to the result column [6, 15] labelled 'axis=1'; flat colours, light background."
+![Numpy: Osy/Axis](../../imgs/numpyAxes.jpg)
 
 Pamatovat si, kterou osu použít, bývá zpočátku obtížné. Pomáhá si říct, že `axis=0` znamená „pro každý sloupec spočítej výsledek přes všechny řádky“ a `axis=1` „pro každý řádek spočítej výsledek přes všechny sloupce“.
 
@@ -286,7 +286,9 @@ print(m.flatten())               # [ 0  1  2  3  4  5  6  7  8  9 10 11]
 
 Prvky se při změně tvaru čtou po řádcích, takže pole nejprve zaplní první řádek, pak druhý atd.
 
-TODO: obrázek – Prompt: "Diagram showing a 1D array of 12 numbered cells (0..11) on top and below it the same cells re-arranged row by row into a 3x4 grid, with arrows indicating the order of filling and the label 'reshape(3, 4)'; flat colours, Czech labels." Změna tvaru je velmi častou operací. Například obrázek může být třeba převést na dlouhý vektor pro vstup do modelu a zase zpět.
+![Numpy: Reshape](../../imgs/numpyReshape.jpg)
+
+Změna tvaru je velmi častou operací. Například obrázek může být třeba převést na dlouhý vektor pro vstup do modelu a zase zpět.
 
 ## Broadcasting
 
@@ -304,7 +306,9 @@ print(m + radek)
 
 Vektor se virtuálně zopakoval pro každý řádek matice.
 
-TODO: obrázek – Prompt: "Educational diagram of NumPy broadcasting: a 2x3 matrix, a plus sign, a row vector [10, 20, 30] shown with faded dashed copies stacked below it to match the matrix height, and the resulting 2x3 matrix on the right; shapes (2, 3) and (3,) labelled; flat colours, Czech labels." Skutečná kopie dat se přitom nevytváří, takže je to efektivní. Podobně lze přičíst sloupcový vektor:
+TODO: obrázek – Prompt: "Educational diagram of NumPy broadcasting: a 2x3 matrix, a plus sign, a row vector [10, 20, 30] shown with faded dashed copies stacked below it to match the matrix height, and the resulting 2x3 matrix on the right; shapes (2, 3) and (3,) labelled; flat colours, Czech labels." 
+
+Skutečná kopie dat se přitom nevytváří, takže je to efektivní. Podobně lze přičíst sloupcový vektor:
 
 ```python
 sloupec = np.array([[100],
