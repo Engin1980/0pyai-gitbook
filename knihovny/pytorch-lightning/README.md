@@ -213,6 +213,28 @@ print(torch.softmax(x, dim=0).sum())    # tensor(1.)
 
 TODO: obrázek – Prompt: "Four small line plots side by side for activation functions ReLU, Sigmoid, Tanh and Softmax-like curve, x range -4 to 4, each with its formula as a caption and a light grid; flat clean style, consistent colours."
 
+CODE:
+
+```python
+import torch
+import matplotlib.pyplot as plt
+
+x = torch.linspace(-4, 4, 200)
+funkce = {
+    "ReLU: max(0, x)": torch.relu(x),
+    "Sigmoid: 1 / (1 + e^-x)": torch.sigmoid(x),
+    "Tanh: (e^x - e^-x) / (e^x + e^-x)": torch.tanh(x),
+    "Softmax-like: e^x / (e^x + 1)": torch.softmax(torch.stack([x, torch.zeros_like(x)]), dim=0)[0],
+}
+
+fig, axs = plt.subplots(1, 4, figsize=(14, 3), layout="tight")
+for ax, (nazev, y) in zip(axs, funkce.items()):
+    ax.plot(x, y)
+    ax.set_title(nazev, fontsize=9)
+    ax.grid(alpha=0.3)
+fig.savefig("pl-aktivacni-funkce.png", dpi=150)
+```
+
 ## Ztrátová funkce (Loss Function)
 
 **Ztrátová funkce** měří, jak moc se předpověď sítě liší od správné hodnoty. Výsledkem je jedno číslo: čím menší, tím lepší. Trénování se snaží ztrátu minimalizovat. Volba závisí na typu úlohy:

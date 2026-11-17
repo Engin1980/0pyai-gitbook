@@ -104,6 +104,24 @@ print(integrate.simpson(y, x=x))    # ≈ 2.0, přesnější
 
 TODO: obrázek – Prompt: "Educational plot of y = sin(x) on [0, π] with the area under the curve shaded light blue and labelled 'určitý integrál = 2', plus a few thin vertical trapezoids drawn under the curve to illustrate numerical integration; flat style, Czech labels."
 
+CODE:
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+
+x = np.linspace(0, np.pi, 300)
+xl = np.linspace(0, np.pi, 9)  # uzly lichoběžníků
+
+fig, ax = plt.subplots()
+ax.plot(x, np.sin(x), color="tab:blue")
+ax.fill_between(x, np.sin(x), color="lightblue", alpha=0.6)
+for a, b in zip(xl[:-1], xl[1:]):
+    ax.plot([a, a, b, b], [0, np.sin(a), np.sin(b), 0], color="grey", lw=0.8)
+ax.text(1.2, 0.35, "určitý integrál = 2")
+fig.savefig("scipy-integral.png", dpi=150)
+```
+
 ## Optimalizace (scipy.optimize)
 
 Optimalizace znamená hledat vstup, při kterém funkce nabývá nejmenší (nebo největší) hodnoty, například parametry modelu s nejmenší chybou. Modul `scipy.optimize` nabízí několik úloh, které spolu souvisejí: minimalizaci funkcí, hledání kořenů rovnic a prokládání křivek (to najdete v rozšiřující části).
@@ -140,6 +158,32 @@ Optimalizace nenajde vždy globální minimum. Pokud funkce má více lokálníc
 Tentýž princip se používá i při trénování modelů strojového učení: hledají se parametry, které minimalizují chybovou funkci. V kapitole o PyTorch Lightning se s ním setkáme znovu.
 
 TODO: obrázek – Prompt: "Contour plot of a 2D bowl-shaped function with its minimum marked by a red star at (3, -1), and a dashed path of arrows showing an optimizer moving from a start point at (0, 0) toward the minimum; flat style, Czech labels 'start' and 'minimum'."
+
+CODE:
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.optimize import minimize
+
+def f(p):
+    return (p[0] - 3) ** 2 + (p[1] + 1) ** 2
+
+cesta = [np.array([0.0, 0.0])]
+minimize(f, cesta[0], method="BFGS", callback=lambda xk: cesta.append(xk.copy()))
+cesta = np.array(cesta)
+
+X, Y = np.meshgrid(np.linspace(-1, 5, 200), np.linspace(-3, 3, 200))
+Z = (X - 3) ** 2 + (Y + 1) ** 2
+
+fig, ax = plt.subplots()
+ax.contour(X, Y, Z, levels=15, cmap="Blues")
+ax.plot(cesta[:, 0], cesta[:, 1], "--o", color="tab:orange", ms=3)
+ax.plot(3, -1, "r*", ms=15)
+ax.annotate("start", cesta[0], xytext=(0.2, 0.8), arrowprops={"arrowstyle": "->"})
+ax.annotate("minimum", (3, -1), xytext=(3.3, -2.3), arrowprops={"arrowstyle": "->"})
+fig.savefig("scipy-optimalizace.png", dpi=150)
+```
 
 ### Hledání kořenů rovnic
 
@@ -205,6 +249,24 @@ print(stats.binom.pmf(6, n=10, p=0.5))      # ≈ 0.2051
 
 TODO: obrázek – Prompt: "Plot of the normal distribution density with mean 100 and std 15 (bell curve), the area to the left of x = 115 shaded and labelled 'cdf(115) ≈ 0,84', vertical dashed line at 115; flat style, Czech labels."
 
+CODE:
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy import stats
+
+rozdeleni = stats.norm(loc=100, scale=15)
+x = np.linspace(55, 145, 300)
+
+fig, ax = plt.subplots()
+ax.plot(x, rozdeleni.pdf(x))
+ax.fill_between(x, rozdeleni.pdf(x), where=x <= 115, alpha=0.4)
+ax.axvline(115, color="grey", linestyle="--")
+ax.text(117, 0.012, f"cdf(115) ≈ {rozdeleni.cdf(115):.2f}".replace(".", ","))
+fig.savefig("scipy-normalni-rozdeleni.png", dpi=150)
+```
+
 ### Popisné statistiky
 
 Pro rychlé shrnutí dat slouží funkce jako `stats.describe`, ale také míry, které chybí v NumPy: šikmost, špičatost nebo režim (nejčastější hodnota).
@@ -266,6 +328,25 @@ y_jemne = spline(x_jemne)             # vyhodnocení ve velmi jemné síti
 Interpolační funkce se po vytvoření chová jako běžná funkce, kterou můžeme zavolat pro libovolnou hodnotu x v rozsahu dat. Mimo původní rozsah interpolace selže, protože by šlo o **extrapolaci**, jež je nespolehlivá. Pro dvourozměrná data existují `interp2d`/`RegularGridInterpolator` a pro nepravidelně rozmístěné body `griddata`.
 
 TODO: obrázek – Prompt: "Plot with six measured points as dark dots, a straight-segment linear interpolation in grey dashed line and a smooth cubic spline in blue passing through the same points; legend in Czech 'naměřené body', 'lineární', 'kubický spline'."
+
+CODE:
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.interpolate import interp1d, CubicSpline
+
+x = np.array([0, 1, 2, 3, 4, 5])
+y = np.array([0.0, 0.8, 0.9, 0.1, -0.8, -1.0])
+xx = np.linspace(0, 5, 300)
+
+fig, ax = plt.subplots()
+ax.plot(x, y, "ko", label="naměřené body")
+ax.plot(xx, interp1d(x, y)(xx), "--", color="grey", label="lineární")
+ax.plot(xx, CubicSpline(x, y)(xx), color="tab:blue", label="kubický spline")
+ax.legend()
+fig.savefig("scipy-interpolace.png", dpi=150)
+```
 
 ## Lineární algebra (scipy.linalg)
 

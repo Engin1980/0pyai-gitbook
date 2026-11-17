@@ -235,6 +235,23 @@ Prvních několik hodnot je `NaN`, protože okno ještě nemá dost dat. To lze 
 
 TODO: obrázek – Prompt: "Line chart of a noisy time series in light grey with a smooth bold line on top showing its 3-point rolling mean, and a small bracket illustrating a window of 3 points sliding along the x axis; flat style, Czech legend 'původní data' and 'klouzavý průměr'."
 
+CODE:
+
+```python
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+rng = np.random.default_rng(5)
+s = pd.Series(np.sin(np.linspace(0, 6, 60)) + rng.normal(0, 0.3, 60))
+
+fig, ax = plt.subplots()
+ax.plot(s, color="lightgrey", label="původní data")
+ax.plot(s.rolling(3).mean(), color="tab:blue", lw=2.5, label="klouzavý průměr")
+ax.legend()
+fig.savefig("pandas-rolling.png", dpi=150)
+```
+
 ## Shrnutí
 
 Rozšiřující funkce Pandas umožňují provést skutečné zpracování dat. Duplicity se odstraňují metodou `drop_duplicates`, typy se opravují pomocí `astype` a `to_numeric`. Vlastní logiku lze aplikovat pomocí `map` a `apply`, i když vektorizované operace jsou rychlejší. Seskupování (`groupby`) a agregace (`agg`) umožňují počítat souhrny po skupinách, tabulky se spojují pomocí `concat` a `merge` a kontingenční tabulky poskytuje `pivot_table`. Textové sloupce zpracujeme přes `.str`, data a časy přes `.dt` a `resample` a časové řady vyhladíme klouzavým oknem `rolling`.

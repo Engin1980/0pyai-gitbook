@@ -31,7 +31,7 @@ plt.plot(x, y)
 plt.show()
 ```
 
-TODO: obrázek – Prompt: "A minimal Matplotlib line chart with default style: a blue line through the points (1,1), (2,4), (3,9), (4,16), (5,25) on white background with default axes and ticks, no title; clean screenshot-like render."
+![MatPlotLib: Simple](../../imgs/pltSimple.jpg)
 
 Takto zapsaný graf využívá implicitní „aktuální“ obrázek, který `pyplot` udržuje na pozadí. Je to pohodlné pro rychlé experimenty. Pro složitější grafy a pro vlastní programy se ale doporučuje explicitní přístup, který popíšeme v následující části a který budeme v dalších ukázkách používat.
 
@@ -48,8 +48,7 @@ flowchart TD
     A1 --> D["data: čáry, body, sloupce"]
     A1 --> T["titulek, popisky, legenda"]
 ```
-
-TODO: obrázek – Prompt: "Annotated diagram of a Matplotlib figure: a rectangle labelled 'Figure' containing one plot area labelled 'Axes', with arrows pointing to the x axis ('Axis x'), y axis ('Axis y'), title, axis labels, legend, ticks and the plotted line; flat vector style, Czech labels, light background."
+![MatPlotLib: Struktura](../../imgs/pltStructure.jpg)
 
 Doporučený způsob vytvoření grafu je funkce **`plt.subplots`**, která vrátí dvojici `(fig, ax)`. Kreslení pak provádíme metodami objektu `ax`:
 
@@ -84,7 +83,7 @@ ax.plot(x, np.cos(x))
 plt.show()
 ```
 
-TODO: obrázek – Prompt: "Matplotlib line chart showing sin(x) in blue and cos(x) in orange for x from 0 to 2π on a single axes, default style, white background, no legend yet."
+![MatPlotLib: Sin](../../imgs/pltSin.jpg)
 
 ## Bodový graf (scatter)
 
@@ -110,7 +109,7 @@ plt.show()
 
 Parametr `c` určuje barvu, `s` velikost bodů, `cmap` barevnou škálu a `alpha` průhlednost (0 až 1), která pomáhá, když se body překrývají.
 
-TODO: obrázek – Prompt: "Matplotlib scatter plot of 80 points showing a positive linear relationship between height (x, cm) and weight (y, kg) with some noise, semi-transparent blue dots, axis labels in Czech 'Výška [cm]' and 'Váha [kg]'."
+![MatPlotLib: Scatter](../../imgs/pltScatter.jpg)
 
 ## Sloupcový graf (bar)
 
@@ -140,7 +139,7 @@ ax.legend()
 plt.show()
 ```
 
-TODO: obrázek – Prompt: "Matplotlib grouped bar chart with four Czech cities on the x axis (Praha, Brno, Ostrava, Plzeň), two bars per city in blue (2020) and orange (2024), a legend in the corner and y axis label 'Počet obyvatel [mil.]'."
+![MatPlotLib : Bar](../../imgs/pltBar.jpg)
 
 ## Histogram (hist)
 
@@ -152,29 +151,34 @@ data = rng.normal(loc=100, scale=15, size=1000)
 
 fig, ax = plt.subplots()
 ax.hist(data, bins=30, color="seagreen", edgecolor="white")
-ax.set_xlabel("Hodnota")
-ax.set_ylabel("Počet výskytů")
+ax.set_xlabel("Value")
+ax.set_ylabel("Number of occurences")
 plt.show()
 ```
 
 Hlavním parametrem je `bins`, tedy počet intervalů (nebo jejich hranice). Příliš málo binů skryje strukturu, příliš mnoho vytvoří šum, proto je dobré vyzkoušet několik hodnot. Parametr `density=True` normalizuje histogram tak, aby plocha byla 1, což je užitečné pro porovnání s teoretickým rozdělením.
 
-TODO: obrázek – Prompt: "Matplotlib histogram of 1000 normally distributed values (mean 100, std 15) with 30 green bins and white edges, bell-shaped, x axis 'Hodnota' and y axis 'Počet výskytů'."
+![MatPlotLib: Histogram](../../imgs/pltHistogram.jpg)
 
 ## Název grafu a popisky os
 
 Graf bez popisků je špatně srozumitelný. Zásadní jsou **titulek** a **popisky os** včetně jednotek:
 
 ```python
+import matplotlib.pyplot as plt
+import numpy as np
+
 x = np.linspace(0, 10, 50)
 
 fig, ax = plt.subplots()
 ax.plot(x, x ** 2)
-ax.set_title("Dráha rovnoměrně zrychleného pohybu")
-ax.set_xlabel("Čas [s]")
-ax.set_ylabel("Dráha [m]")
+ax.set_title("Accelerated movement")
+ax.set_xlabel("Time [s]")
+ax.set_ylabel("Distance [m]")
 plt.show()
 ```
+
+![MatPlotLib: Labels & Legenda](../../imgs/pltLegenda.jpg)
 
 U delších textů lze nastavit velikost písma (`fontsize=14`), tučné písmo (`fontweight="bold"`) a pro celý obrázek použít `fig.suptitle("...")`. Matplotlib umí ve textech zobrazit i matematické vzorce ve stylu LaTeXu, například `ax.set_ylabel(r"$y = x^2$")`.
 
@@ -247,7 +251,8 @@ plt.show()
 
 Parametr `figsize=(šířka, výška)` udává velikost obrázku v palcích. Pro jeden řádek nebo sloupec grafů je vrácené pole jednorozměrné (`osy[0]`, `osy[1]`). Pokud mají grafy sdílet osu, nastaví se `sharex=True` nebo `sharey=True`. Volání `fig.tight_layout()` zabrání překrývání popisků.
 
-TODO: obrázek – Prompt: "A 2x2 grid of Matplotlib subplots in one figure: top-left sine curve, top-right orange cosine curve, bottom-left small scatter of noisy sine points, bottom-right histogram of random normal data; each with a small title, tight layout."
+
+![MatPlotLib: SubPlots](../../imgs/pltSubPlots.jpg)
 
 ## Ukládání grafů
 

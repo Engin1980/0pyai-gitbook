@@ -266,6 +266,36 @@ uzavreni = cv2.morphologyEx(binarni, cv2.MORPH_CLOSE, jadro)   # dilatace, pak e
 
 TODO: obrázek – Prompt: "Four-panel figure on a small binary image of a white blob with tiny white noise dots and a few black holes: original, after erosion (smaller blob, noise gone), after dilation (larger blob, holes filled), after opening; Czech captions; flat clean style."
 
+CODE:
+
+```python
+import cv2
+import numpy as np
+import matplotlib.pyplot as plt
+
+img = np.zeros((120, 120), np.uint8)
+cv2.circle(img, (60, 60), 30, 255, -1)               # hlavní objekt
+cv2.circle(img, (55, 55), 4, 0, -1)                  # díry
+cv2.circle(img, (68, 65), 3, 0, -1)
+for x, y in [(10, 10), (100, 20), (15, 100), (105, 105), (90, 8)]:
+    img[y:y + 2, x:x + 2] = 255                      # šum
+
+kernel = np.ones((5, 5), np.uint8)
+vysledky = {
+    "původní": img,
+    "eroze": cv2.erode(img, kernel),
+    "dilatace": cv2.dilate(img, kernel),
+    "otevření": cv2.morphologyEx(img, cv2.MORPH_OPEN, kernel),
+}
+
+fig, axs = plt.subplots(1, 4, figsize=(12, 3))
+for ax, (nazev, obr) in zip(axs, vysledky.items()):
+    ax.imshow(obr, cmap="gray")
+    ax.set_title(nazev)
+    ax.axis("off")
+fig.savefig("opencv-morfologie.png", dpi=150)
+```
+
 ## Práce s kamerou
 
 Obraz z webkamery (nebo ze souboru videa) se čte pomocí **`cv2.VideoCapture`**. Kamera se otevře číslem zařízení (0 je výchozí kamera) a snímky se čtou ve smyčce.

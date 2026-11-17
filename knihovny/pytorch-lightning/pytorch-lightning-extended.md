@@ -119,6 +119,30 @@ Tento plánovač sníží learning rate na polovinu, pokud se `val_loss` po tři
 
 TODO: obrázek – Prompt: "Three small line charts of training loss over epochs: learning rate too high (loss oscillating and diverging), too low (loss decreasing very slowly) and well chosen (loss dropping smoothly then flattening); Czech captions 'příliš velký', 'příliš malý', 'vhodný'; flat clean style."
 
+CODE:
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+
+rng = np.random.default_rng(0)
+ep = np.arange(1, 31)
+
+krivky = {
+    "příliš velký": 1 + 0.15 * ep * np.abs(np.sin(ep * 1.3)) + rng.normal(0, 0.1, ep.size),
+    "příliš malý": 2.0 - 0.01 * ep + rng.normal(0, 0.01, ep.size),
+    "vhodný": 0.2 + 1.8 * np.exp(-ep / 6) + rng.normal(0, 0.02, ep.size),
+}
+
+fig, axs = plt.subplots(1, 3, figsize=(12, 3), sharey=True, layout="tight")
+for ax, (nazev, loss) in zip(axs, krivky.items()):
+    ax.plot(ep, loss)
+    ax.set_title(nazev)
+    ax.set_xlabel("Epocha")
+axs[0].set_ylabel("Loss")
+fig.savefig("pl-learning-rate.png", dpi=150)
+```
+
 Praxe je následující: začít s osvědčenou hodnotou (u Adamu `1e-3`), sledovat křivku ztráty a podle ní hodnotu zvýšit či snížit, případně použít plánovač. Lightning umí hodnotu automaticky vyhledat nástrojem `Tuner(trainer).lr_find(model, train_loader)`.
 
 ## Overfitting a Underfitting
@@ -130,6 +154,40 @@ Model se může naučit data špatně dvěma opačnými způsoby.
 **Overfitting** (přeučení) znamená, že model si „zapamatuje“ trénovací data včetně šumu a na nových datech selže. Chyba na trénovacích datech je nízká, ale na validačních roste. Pozná se podle rozevírající se mezery mezi křivkami trénovací a validační ztráty.
 
 TODO: obrázek – Prompt: "Line chart with epochs on x axis and loss on y axis: the training loss (blue) keeps decreasing while the validation loss (orange) decreases and then rises after a marked point labelled 'začátek přeučení'; two small side panels showing underfit (straight line through curved data) and overfit (wiggly curve through points); Czech labels, flat style."
+
+CODE:
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+
+rng = np.random.default_rng(1)
+ep = np.arange(1, 41)
+train = 2 * np.exp(-ep / 10) + 0.05
+val = 2 * np.exp(-ep / 10) + 0.25 + 0.0006 * np.clip(ep - 15, 0, None) ** 2
+
+fig = plt.figure(figsize=(10, 4), layout="tight")
+gs = fig.add_gridspec(2, 2, width_ratios=[2, 1])
+ax = fig.add_subplot(gs[:, 0])
+ax.plot(ep, train, label="trénovací loss", color="tab:blue")
+ax.plot(ep, val, label="validační loss", color="tab:orange")
+ax.axvline(15, color="grey", linestyle="--")
+ax.annotate("začátek přeučení", (15, val[14]), xytext=(20, 1.5), arrowprops={"arrowstyle": "->"})
+ax.set_xlabel("Epocha")
+ax.set_ylabel("Loss")
+ax.legend()
+
+x = np.linspace(0, 1, 12)
+y = np.sin(2 * np.pi * x) + rng.normal(0, 0.2, x.size)
+xx = np.linspace(0, 1, 200)
+for i, (nazev, stupen) in enumerate([("podučení", 1), ("přeučení", 11)]):
+    a = fig.add_subplot(gs[i, 1])
+    a.plot(x, y, "ko", ms=3)
+    a.plot(xx, np.polyval(np.polyfit(x, y, stupen), xx), color="tab:red")
+    a.set_ylim(-2, 2)
+    a.set_title(nazev, fontsize=9)
+fig.savefig("pl-preuceni.png", dpi=150)
+```
 
 ## Regularizace
 

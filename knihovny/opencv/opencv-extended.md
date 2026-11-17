@@ -38,6 +38,32 @@ lepsi = clahe.apply(sedy)
 
 TODO: obrázek – Prompt: "Two rows: top row a dark low-contrast grayscale photo and its histogram bunched to the left; bottom row the same photo after histogram equalization, brighter with more contrast, and its histogram spread across the full range; Czech captions; flat clean style."
 
+CODE:
+
+```python
+import cv2
+import numpy as np
+import matplotlib.pyplot as plt
+
+# nízkokontrastní syntetický obrázek: gradient + kruh, hodnoty jen v rozsahu 40–110
+rng = np.random.default_rng(0)
+x = np.tile(np.linspace(40, 90, 300), (200, 1))
+img = x.copy()
+cv2.circle(img, (150, 100), 50, 110, -1)
+img = np.clip(img + rng.normal(0, 3, img.shape), 0, 255).astype(np.uint8)
+
+eq = cv2.equalizeHist(img)
+
+fig, axs = plt.subplots(2, 2, figsize=(9, 6), layout="tight")
+for i, (obr, nazev) in enumerate([(img, "původní"), (eq, "po vyrovnání histogramu")]):
+    axs[i, 0].imshow(obr, cmap="gray", vmin=0, vmax=255)
+    axs[i, 0].set_title(nazev)
+    axs[i, 0].axis("off")
+    axs[i, 1].hist(obr.ravel(), bins=256, range=(0, 255))
+    axs[i, 1].set_title("histogram")
+fig.savefig("opencv-vyrovnani-histogramu.png", dpi=150)
+```
+
 ## Barevné kanály
 
 Barevný obrázek se skládá ze tří kanálů (B, G, R). Ty lze oddělit funkcí `cv2.split`, upravit samostatně a opět spojit funkcí `cv2.merge`. Případně se využije indexování pole NumPy.
@@ -92,6 +118,34 @@ adaptivni = cv2.adaptiveThreshold(
 Parametry `blockSize` a `C` je třeba vyladit podle obrázku. Adaptivní prahování se používá například při skenování textu nebo hledání čar na nerovnoměrně osvětleném pozadí.
 
 TODO: obrázek – Prompt: "Three-panel figure of a photographed page of text with an uneven shadow on one side: original, global threshold (half the page black), adaptive threshold (clean text everywhere); Czech captions; flat clean style."
+
+CODE:
+
+```python
+import cv2
+import numpy as np
+import matplotlib.pyplot as plt
+
+# syntetická „stránka“ s textem a nerovnoměrným stínem zleva doprava
+img = np.full((300, 500), 220, np.uint8)
+for r in range(6):
+    cv2.putText(img, "Python a OpenCV", (20, 40 + r * 45),
+                cv2.FONT_HERSHEY_SIMPLEX, 1.0, 40, 2)
+stin = np.tile(np.linspace(0.35, 1.0, 500), (300, 1))
+img = (img * stin).astype(np.uint8)
+
+_, globalni = cv2.threshold(img, 127, 255, cv2.THRESH_BINARY)
+adaptivni = cv2.adaptiveThreshold(img, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C,
+                                  cv2.THRESH_BINARY, 31, 10)
+
+fig, axs = plt.subplots(1, 3, figsize=(14, 3.5))
+for ax, (obr, nazev) in zip(axs, [(img, "původní"), (globalni, "globální práh"),
+                                  (adaptivni, "adaptivní práh")]):
+    ax.imshow(obr, cmap="gray", vmin=0, vmax=255)
+    ax.set_title(nazev)
+    ax.axis("off")
+fig.savefig("opencv-adaptivni-prah.png", dpi=150)
+```
 
 ## Gaussovský a mediánový filtr
 
@@ -169,6 +223,37 @@ for k in kontury:
 Pro kruhy existuje i specializovaná Houghova transformace `cv2.HoughCircles` a pro úsečky `cv2.HoughLinesP`. Tento postup je jednoduchý a spoléhá na čistě nasnímané obrazy. Pro složitější scény se dnes používají neuronové sítě.
 
 TODO: obrázek – Prompt: "A white background with several simple coloured shapes (triangle, square, pentagon, circle) each outlined with a green contour and labelled with a small Czech text 'trojúhelník', 'čtyřúhelník', 'pětiúhelník', 'kruh' next to it; flat clean style."
+
+CODE:
+
+```python
+import cv2
+import numpy as np
+import matplotlib.pyplot as plt
+
+img = np.full((300, 600, 3), 255, np.uint8)
+cv2.fillPoly(img, [np.array([[50, 120], [110, 120], [80, 60]])], (255, 150, 50))
+cv2.rectangle(img, (170, 60), (230, 120), (80, 80, 230), -1)
+cv2.fillPoly(img, [cv2.ellipse2Poly((350, 90), (35, 35), 0, 0, 360, 72)], (60, 200, 90))
+cv2.circle(img, (480, 90), 32, (40, 190, 240), -1)
+
+sedy = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+_, bin_ = cv2.threshold(sedy, 200, 255, cv2.THRESH_BINARY_INV)
+kontury, _ = cv2.findContours(bin_, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+nazvy = {3: "trojúhelník", 4: "čtyřúhelník", 5: "pětiúhelník"}
+
+vysledek = img.copy()
+cv2.drawContours(vysledek, kontury, -1, (0, 160, 0), 2)
+
+fig, ax = plt.subplots(figsize=(10, 5))
+ax.imshow(cv2.cvtColor(vysledek, cv2.COLOR_BGR2RGB))
+for k in kontury:
+    aprox = cv2.approxPolyDP(k, 0.04 * cv2.arcLength(k, True), True)
+    x, y, w, h = cv2.boundingRect(k)
+    ax.text(x, y + h + 25, nazvy.get(len(aprox), "kruh"))
+ax.axis("off")
+fig.savefig("opencv-kontury-tvary.png", dpi=150)
+```
 
 ## Maskování obrázků
 

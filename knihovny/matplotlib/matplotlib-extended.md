@@ -27,7 +27,7 @@ ax.axis("equal")             # kruh, ne elipsa
 plt.show()
 ```
 
-TODO: obrázek – Prompt: "Matplotlib pie chart with four slices labelled Python 45%, Java 25%, C++ 15%, Ostatní 15%, the Python slice slightly pulled out, percentages printed inside slices, default pastel-like colour cycle, white background."
+![MatPlotLib: Pie Chart](../../imgs/pltPieChart.jpg)
 
 ## Krabicový graf (boxplot)
 
@@ -48,6 +48,29 @@ plt.show()
 (Ve starších verzích Matplotlibu se parametr jmenuje `labels` místo `tick_labels`.)
 
 TODO: obrázek – Prompt: "Matplotlib box plot comparing three groups A, B, C with different spreads (B widest, C narrowest), median lines in orange, whiskers and a few outlier circles, y axis label 'Hodnota'; annotated callouts in Czech: 'medián', 'kvartily', 'odlehlá hodnota'."
+
+CODE:
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+
+rng = np.random.default_rng(3)
+a = rng.normal(50, 8, 100)
+b = rng.normal(55, 15, 100)
+c = rng.normal(52, 4, 100)
+
+fig, ax = plt.subplots()
+ax.boxplot([a, b, c], tick_labels=["A", "B", "C"])
+ax.set_ylabel("Hodnota")
+ax.annotate("medián", xy=(1.2, np.median(a)), xytext=(1.6, np.median(a) + 12),
+            arrowprops={"arrowstyle": "->"})
+ax.annotate("kvartily", xy=(2.2, np.percentile(b, 75)), xytext=(2.5, np.percentile(b, 75) + 15),
+            arrowprops={"arrowstyle": "->"})
+ax.annotate("odlehlá hodnota", xy=(3, c.max()), xytext=(2.4, c.max() + 12),
+            arrowprops={"arrowstyle": "->"})
+fig.savefig("matplotlib-boxplot.png", dpi=150)
+```
 
 ## Formátování os a jejich rozsah
 
@@ -146,6 +169,24 @@ Parametr `yerr` (případně `xerr`) určuje velikost chyby, buď jednu hodnotu 
 
 TODO: obrázek – Prompt: "Matplotlib error-bar plot: five measurement points connected by a dark blue line with vertical grey error bars and small caps, plus a lighter fill_between band showing the uncertainty; axis labels 'Měření' and 'Hodnota'."
 
+CODE:
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+
+x = np.arange(1, 6)
+y = np.array([2.0, 3.1, 2.8, 4.2, 5.0])
+chyba = np.array([0.4, 0.3, 0.5, 0.4, 0.6])
+
+fig, ax = plt.subplots()
+ax.errorbar(x, y, yerr=chyba, color="darkblue", ecolor="grey", capsize=4)
+ax.fill_between(x, y - chyba, y + chyba, alpha=0.2)
+ax.set_xlabel("Měření")
+ax.set_ylabel("Hodnota")
+fig.savefig("matplotlib-errorbar.png", dpi=150)
+```
+
 ## Více datových řad v jednom grafu
 
 Do jednoho grafu můžeme kreslit více řad, a to i různých typů nebo s různými měřítky. Pro řady s **odlišným rozsahem hodnot** se hodí druhá osa y, kterou vytvoří `twinx`:
@@ -191,6 +232,27 @@ plt.show()
 Funkce `np.meshgrid` z jednorozměrných os vytvoří dvě pole souřadnic celé mřížky, nad kterými se pohodlně počítají hodnoty `Z`. Pohled na graf se mění atributy `ax.view_init(elev=30, azim=45)`. 3D grafy bývají efektní, ale hůře se z nich odečítají hodnoty, proto je dobré zvážit, zda by nebyl srozumitelnější vrstevnicový graf (`ax.contourf`) nebo teplotní mapa (`ax.imshow`).
 
 TODO: obrázek – Prompt: "Matplotlib 3D surface plot of z = sin(sqrt(x²+y²)) over x,y in [-3, 3] with the viridis colormap, axes labelled x, y, z, viewed from an elevated angle, white background."
+
+CODE:
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+
+x = np.linspace(-3, 3, 100)
+y = np.linspace(-3, 3, 100)
+X, Y = np.meshgrid(x, y)
+Z = np.sin(np.sqrt(X**2 + Y**2))
+
+fig = plt.figure()
+ax = fig.add_subplot(projection="3d")
+ax.plot_surface(X, Y, Z, cmap="viridis")
+ax.set_xlabel("x")
+ax.set_ylabel("y")
+ax.set_zlabel("z")
+ax.view_init(elev=30, azim=-60)
+fig.savefig("matplotlib-3d-plocha.png", dpi=150)
+```
 
 ## Interaktivní grafy
 
