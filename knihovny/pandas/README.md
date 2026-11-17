@@ -49,7 +49,7 @@ flowchart LR
     DF --> C3["sloupec 'mesto' (Series)"]
 ```
 
-TODO: obrázek – Prompt: "Flat vector diagram of a pandas DataFrame drawn as a table with 3 columns (jmeno, vek, mesto) and 4 rows; the left-most index column and the header row highlighted in different colours; one column outlined and labelled 'Series', the whole table labelled 'DataFrame'; Czech labels, light background."
+![Pandas: Dataframe](../../imgs/pandas-dataframe.jpg)
 
 ## Vytváření DataFrame
 
@@ -198,7 +198,7 @@ print(d.loc["Eva", "plat"])    # 47000
 print(d.iloc[2, 2])            # 47000, stejná buňka podle pozice
 ```
 
-TODO: obrázek – Prompt: "Flat vector diagram of a small DataFrame table with row labels and column names, comparing two selections side by side: 'iloc[1:3, 0:2]' highlighting cells by position numbers on the margins, and 'loc[1:2, [\"jmeno\", \"vek\"]]' highlighting by labels; different highlight colours, Czech captions."
+![Pandas: loc vs. iloc](../../imgs/pandas-lociloc.jpg)
 
 ## Filtrování dat
 
