@@ -306,7 +306,7 @@ print(m + radek)
 
 Vektor se virtuálně zopakoval pro každý řádek matice.
 
-TODO: obrázek – Prompt: "Educational diagram of NumPy broadcasting: a 2x3 matrix, a plus sign, a row vector [10, 20, 30] shown with faded dashed copies stacked below it to match the matrix height, and the resulting 2x3 matrix on the right; shapes (2, 3) and (3,) labelled; flat colours, Czech labels." 
+![Numpy: Broadcasting](../../imgs/numpyBroadcasting.jpg)
 
 Skutečná kopie dat se přitom nevytváří, takže je to efektivní. Podobně lze přičíst sloupcový vektor:
 
@@ -423,7 +423,7 @@ print(np.vstack([a, b]).shape)    # (4, 2)
 print(np.hstack([a, b]).shape)    # (2, 4)
 ```
 
-TODO: obrázek – Prompt: "Two-panel diagram with two coloured 2x2 matrices A and B: on the left they are stacked on top of each other into a 4x2 matrix labelled 'axis=0 / vstack', on the right placed side by side into a 2x4 matrix labelled 'axis=1 / hstack'; flat colours, light background, Czech labels."
+![Numpy: Stacking](../../imgs/numpyStacking.jpg)
 
 Spojovaná pole se musí shodovat ve všech rozměrech kromě osy, podél které se spojují. Opakem je rozdělování, k čemuž slouží `np.split`, případně `np.vsplit` a `np.hsplit`:
 
