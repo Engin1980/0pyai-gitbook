@@ -25,7 +25,7 @@ flowchart LR
     C --> H["12. PyTorch Lightning"]
 ```
 
-TODO: obrázek – Prompt: "Wide flat vector banner for a Python course: a friendly stylised snake made of code brackets curling around icons of a laptop, a table, a line chart, a camera and a neural network graph; clean modern look, blue and yellow palette, light background, no text."
+![Banner](./imgs/banner.jpg)
 
 ## Přehled kapitol
 

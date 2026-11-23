@@ -213,7 +213,7 @@ muj_program.py:5: error: Argument 1 to "secti" has incompatible type "str"; expe
 
 VS Code s rozšířením Pylance i PyCharm provádějí podobnou kontrolu přímo při psaní a chyby podtrhují v editoru.
 
-TODO: obrázek – Prompt: "Screenshot of VS Code with Pylance showing the call secti('a', 'b') underlined with a red wavy line and a hover tooltip saying 'Argument of type \"Literal['a']\" cannot be assigned to parameter \"a\" of type \"int\"'; dark theme."
+![Python: Type Hints](../imgs/python-hint.jpg)
 
 ### Složitější typy
 

@@ -42,29 +42,7 @@ def kyvadlo(t, stav):
 res = solve_ivp(kyvadlo, (0, 10), y0=[1.0, 0.0], t_eval=np.linspace(0, 10, 300))
 ```
 
-TODO: obrázek – Prompt: "Line chart of a pendulum angle theta over 10 seconds as a smooth oscillating sine-like curve, x axis 'Čas [s]', y axis 'Úhel [rad]', blue line on white background, simple flat style."
-
-CODE:
-
-```python
-import numpy as np
-import matplotlib.pyplot as plt
-from scipy.integrate import solve_ivp
-
-g, l = 9.81, 1.0
-
-def kyvadlo(t, y):
-    theta, omega = y
-    return [omega, -(g / l) * np.sin(theta)]
-
-res = solve_ivp(kyvadlo, (0, 10), [0.5, 0.0], t_eval=np.linspace(0, 10, 500))
-
-fig, ax = plt.subplots()
-ax.plot(res.t, res.y[0], color="tab:blue")
-ax.set_xlabel("Čas [s]")
-ax.set_ylabel("Úhel [rad]")
-fig.savefig("scipy-kyvadlo.png", dpi=150)
-```
+![Scipy: Diferenciální rovnice](../../imgs/scipy-pendulum.png)
 
 ## Vlastní čísla a vlastní vektory
 
@@ -176,34 +154,7 @@ plt.show()
 
 Ve spektru uvidíme dva vrcholy: na 50 Hz a na 120 Hz, tedy přesně na frekvencích, ze kterých jsme signál složili.
 
-TODO: obrázek – Prompt: "Two stacked plots: top shows a noisy time-domain signal made from 50 Hz and 120 Hz sine waves, bottom shows its FFT magnitude spectrum with two sharp peaks at 50 Hz and 120 Hz labelled; x axes 'Čas [s]' and 'Frekvence [Hz]', flat style, Czech labels."
-
-CODE:
-
-```python
-import numpy as np
-import matplotlib.pyplot as plt
-from scipy.fft import rfft, rfftfreq
-
-fs = 1000
-t = np.arange(0, 1, 1 / fs)
-rng = np.random.default_rng(0)
-signal = np.sin(2 * np.pi * 50 * t) + 0.5 * np.sin(2 * np.pi * 120 * t)
-signal += rng.normal(0, 0.3, t.size)
-
-spektrum = np.abs(rfft(signal)) / (t.size / 2)
-frekvence = rfftfreq(t.size, 1 / fs)
-
-fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(8, 6), layout="tight")
-ax1.plot(t[:200], signal[:200])
-ax1.set_xlabel("Čas [s]")
-ax2.plot(frekvence, spektrum)
-ax2.set_xlim(0, 200)
-ax2.set_xlabel("Frekvence [Hz]")
-for f in (50, 120):
-    ax2.annotate(f"{f} Hz", xy=(f, spektrum[f]), xytext=(f + 10, spektrum[f]))
-fig.savefig("scipy-fft.png", dpi=150)
-```
+![SciPy: Fourierova transformace](../../imgs/scipy-ft.png)
 
 ## Filtrace signálů
 
