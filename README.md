@@ -110,3 +110,7 @@ Příklady kódu si nejlépe osvojíte tak, že je sami napíšete a upravíte. 
 {% endhint %}
 
 Pokud si nebudete jistí, vraťte se ke kapitole, na kterou navazujete. Kurz je psán tak, aby se na dříve probrané pojmy odkazoval, a opakování je nejjistější cestou k tomu, aby vám nové věci zůstaly v hlavě.
+
+## Oznámení
+
+Při vytváření textu kurzu byly využity další nástroje - nástroje AI, zejména nástroj Claude pro generování zdrojových kódů, nástroj Gemini pro tvorbu obrazových dat; a nástroj Online Python ([https://www.online-python.com/pyodide](https://www.online-python.com/pyodide)) pro generování výstupu z Python zdrojových kódů.
