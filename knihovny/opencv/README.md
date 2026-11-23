@@ -53,10 +53,9 @@ print(obraz.shape)     # (100, 200, 3)
 print(obraz.dtype)     # uint8
 print(obraz[10, 10])   # hodnoty jednoho pixelu: [255 0 0]
 ```
+![OpenCV: Representation](../../imgs/opencv-representation.jpg)
 
-TODO: obrázek – Prompt: "Educational illustration showing a small 5x5 pixel grayscale image magnified, with each pixel labelled by its number (0 to 255), next to the same idea for a colour pixel split into three stacked layers labelled B, G, R; flat style, Czech labels 'výška', 'šířka', 'kanály'."
-
-Pozor na pořadí os: výška (řádky) je první, šířka (sloupce) druhá, takže pixel na souřadnicích (x, y) čteme jako `obraz[y, x]`.
+TODO HINT: Pozor na pořadí os: výška (řádky) je první, šířka (sloupce) druhá, takže pixel na souřadnicích (x, y) čteme jako `obraz[y, x]`.
 
 ## Načítání a ukládání obrázků
 
@@ -113,7 +112,7 @@ Barvu lze popsat různými způsoby, kterým říkáme **barevné prostory** (mo
 
 **HSV** popisuje barvu pomocí odstínu (*Hue*, 0 až 179 v OpenCV), sytosti (*Saturation*) a jasu (*Value*). Hodí se pro hledání objektů podle barvy, protože odstín je do značné míry nezávislý na osvětlení.
 
-TODO: obrázek – Prompt: "Four-panel infographic of colour models: an RGB cube, a grayscale gradient bar, an HSV cylinder (hue around, saturation radial, value vertical) and a note that OpenCV uses BGR order; flat vector style, clean labels in Czech."
+![OpenCV: Color models](../../imgs/opencv-color-models.jpg)
 
 ## Převod barevných prostorů
 
@@ -185,7 +184,7 @@ otoceny = cv2.warpAffine(img, M, (sirka, vyska))
 
 Pro **perspektivní** transformaci, například „narovnání“ dokumentu vyfoceného šikmo, slouží `cv2.getPerspectiveTransform` (z čtyř bodů vstupu a čtyř bodů výstupu) a `cv2.warpPerspective`.
 
-TODO: obrázek – Prompt: "Four-panel figure showing the same simple photo (e.g. a house) after geometric transforms: original, shifted right and down, rotated by 45 degrees around the centre, and perspective-corrected; each panel with a short Czech caption; flat clean style."
+![OpenCV: Transformace](../../imgs/opencv-transformations.png)
 
 ## Prahování obrázků
 
@@ -204,7 +203,8 @@ print("Zvolený práh:", prah)
 
 Funkce vrací nalezený práh a výsledný obrázek. Typ prahování určuje konstanta: `THRESH_BINARY` (pixel nad prahem bílý), `THRESH_BINARY_INV` (obráceně), `THRESH_TRUNC`, `THRESH_TOZERO`. **Otsuova metoda** sama zvolí práh tak, aby se obě skupiny pixelů co nejvíce lišily, což funguje dobře u obrázků s výrazným pozadím a popředím.
 
-TODO: obrázek – Prompt: "Three-panel figure: a grayscale photo of coins on a table, its binary threshold result (fixed threshold 127) with white coins on black background, and the Otsu result; Czech captions 'původní', 'práh 127', 'Otsu'; flat clean style."
+![OpenCV: Thresholding II](../../imgs/opencv-thresholding-II.png)
+![OpenCV: Thresholding III](../../imgs/opencv-thresholding-III.png)
 
 ## Rozostření a vyhlazování
 
@@ -232,7 +232,7 @@ cv2.imwrite("hrany.png", hrany)
 
 Dva prahy určují citlivost. Hrany se silnějším gradientem než horní práh jsou jisté, hrany pod dolním prahem se zahodí a ty mezi nimi se zachovají jen tehdy, pokud navazují na jisté hrany. Hodnoty je obvykle potřeba vyladit podle konkrétního obrázku. Poměr horního prahu k dolnímu bývá 2:1 až 3:1.
 
-TODO: obrázek – Prompt: "Side-by-side figure: a colour photo of a simple building and its Canny edge-detection result as thin white lines on a black background; Czech captions 'původní obrázek' and 'hrany (Canny)'; flat clean style."
+![OpenCV: Detekce hran](../../imgs/opencv-canny.png)
 
 ## Morfologické operace
 
@@ -264,37 +264,8 @@ otevreni = cv2.morphologyEx(binarni, cv2.MORPH_OPEN, jadro)    # eroze, pak dila
 uzavreni = cv2.morphologyEx(binarni, cv2.MORPH_CLOSE, jadro)   # dilatace, pak eroze: zacelí díry
 ```
 
-TODO: obrázek – Prompt: "Four-panel figure on a small binary image of a white blob with tiny white noise dots and a few black holes: original, after erosion (smaller blob, noise gone), after dilation (larger blob, holes filled), after opening; Czech captions; flat clean style."
+![OpenCV: Morfologie](../../imgs/opencv-morphology.png)
 
-CODE:
-
-```python
-import cv2
-import numpy as np
-import matplotlib.pyplot as plt
-
-img = np.zeros((120, 120), np.uint8)
-cv2.circle(img, (60, 60), 30, 255, -1)               # hlavní objekt
-cv2.circle(img, (55, 55), 4, 0, -1)                  # díry
-cv2.circle(img, (68, 65), 3, 0, -1)
-for x, y in [(10, 10), (100, 20), (15, 100), (105, 105), (90, 8)]:
-    img[y:y + 2, x:x + 2] = 255                      # šum
-
-kernel = np.ones((5, 5), np.uint8)
-vysledky = {
-    "původní": img,
-    "eroze": cv2.erode(img, kernel),
-    "dilatace": cv2.dilate(img, kernel),
-    "otevření": cv2.morphologyEx(img, cv2.MORPH_OPEN, kernel),
-}
-
-fig, axs = plt.subplots(1, 4, figsize=(12, 3))
-for ax, (nazev, obr) in zip(axs, vysledky.items()):
-    ax.imshow(obr, cmap="gray")
-    ax.set_title(nazev)
-    ax.axis("off")
-fig.savefig("opencv-morfologie.png", dpi=150)
-```
 
 ## Práce s kamerou
 
