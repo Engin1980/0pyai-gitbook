@@ -102,7 +102,7 @@ flowchart LR
     F --> G
 ```
 
-TODO: obrázek – Prompt: "Flat vector illustration of the split-apply-combine idea: one table on the left split into two coloured tables (Brno, Praha), each passing through a box labelled 'sum()', then merged into a small result table on the right; arrows between steps, Czech captions 'rozdělit', 'aplikovat', 'spojit'."
+![Pandas: Grouping](../../imgs/pandas-groupby.jpg)
 
 ## Agregace dat (agg)
 
@@ -153,7 +153,7 @@ print(pd.merge(zamestnanci, oddeleni, on="id", how="outer"))    # všechno z obo
 
 Parametr `how` určuje, které řádky se zachovají: `inner` jen ty s klíčem v obou tabulkách, `left` a `right` všechny z levé nebo pravé tabulky a `outer` všechny z obou. Chybějící protějšky jsou vyplněny `NaN`. Pokud se klíče jmenují v tabulkách jinak, použijí se parametry `left_on` a `right_on`.
 
-TODO: obrázek – Prompt: "Four small Venn-style diagrams showing merge join types for two tables joined on a key: inner, left, right and outer, with the kept region shaded in each; short Czech captions under each; flat colours, light background."
+![Pandas: merging](../../imgs/pandas-merging.jpg)
 
 ## Kontingenční tabulky (pivot\_table)
 
@@ -233,24 +233,7 @@ print(s.rolling(window=3).mean())
 
 Prvních několik hodnot je `NaN`, protože okno ještě nemá dost dat. To lze změnit parametrem `min_periods`. Stejně jako `mean` lze použít `sum`, `min`, `max` nebo `std`. Podobná operace `expanding` počítá statistiku od počátku do aktuálního bodu a `shift` posouvá řadu o zadaný počet kroků, což se hodí pro porovnání s předchozí hodnotou.
 
-TODO: obrázek – Prompt: "Line chart of a noisy time series in light grey with a smooth bold line on top showing its 3-point rolling mean, and a small bracket illustrating a window of 3 points sliding along the x axis; flat style, Czech legend 'původní data' and 'klouzavý průměr'."
-
-CODE:
-
-```python
-import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
-
-rng = np.random.default_rng(5)
-s = pd.Series(np.sin(np.linspace(0, 6, 60)) + rng.normal(0, 0.3, 60))
-
-fig, ax = plt.subplots()
-ax.plot(s, color="lightgrey", label="původní data")
-ax.plot(s.rolling(3).mean(), color="tab:blue", lw=2.5, label="klouzavý průměr")
-ax.legend()
-fig.savefig("pandas-rolling.png", dpi=150)
-```
+![Pandas: Klouzavá okna](../../imgs/pandas-rolling-window.jpg)
 
 ## Shrnutí
 
