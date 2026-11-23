@@ -25,7 +25,7 @@ flowchart LR
     C --> H["12. PyTorch Lightning"]
 ```
 
-![Banner](./imgs/banner.jpg)
+![Banner](.gitbook/assets/banner.jpg)
 
 ## Přehled kapitol
 
@@ -37,7 +37,7 @@ Nejdříve si vysvětlíme, v čem se interpretované jazyky liší od kompilova
 
 ### 2. Python programovací styl
 
-Podíváme se na to, čím je Python specifický: dynamické typování a duck typing, pravdivostní hodnoty libovolných objektů (*truthy* a *falsy*) a volitelné anotace typů, které pomáhají psát srozumitelnější a bezpečnější kód.
+Podíváme se na to, čím je Python specifický: dynamické typování a duck typing, pravdivostní hodnoty libovolných objektů (_truthy_ a _falsy_) a volitelné anotace typů, které pomáhají psát srozumitelnější a bezpečnější kód.
 
 [Přejít na kapitolu Představení jazyka](python/predstaveni-jazyka.md)
 
@@ -69,37 +69,37 @@ Ukážeme si práci se soubory a cestami, logování událostí v aplikaci a čt
 
 Základ numerických výpočtů v Pythonu. Seznámíte se s vícerozměrnými poli `ndarray`, jejich vytvářením a indexováním, vektorovými operacemi, broadcastingem a změnou tvaru.
 
-[Základní část](knihovny/numpy/README.md) · [Rozšiřující část](knihovny/numpy/numpy-extended.md)
+[Základní část](knihovny/numpy/) · [Rozšiřující část](knihovny/numpy/numpy-extended.md)
 
 ### 8. Pandas
 
 Knihovna pro tabulková data. Naučíte se načítat a ukládat soubory CSV a Excel, vybírat a filtrovat řádky a sloupce, ošetřovat chybějící hodnoty a počítat základní statistiky. Rozšiřující část pokračuje seskupováním, spojováním tabulek a prací s textem a časem.
 
-[Základní část](knihovny/pandas/README.md) · [Rozšiřující část](knihovny/pandas/pandas-extended.md)
+[Základní část](knihovny/pandas/) · [Rozšiřující část](knihovny/pandas/pandas-extended.md)
 
 ### 9. Matplotlib
 
 Vizualizace dat. Vytvoříte spojnicové, bodové a sloupcové grafy i histogramy, přidáte popisky a legendy a výsledky uložíte do souborů.
 
-[Základní část](knihovny/matplotlib/README.md) · [Rozšiřující část](knihovny/matplotlib/matplotlib-extended.md)
+[Základní část](knihovny/matplotlib/) · [Rozšiřující část](knihovny/matplotlib/matplotlib-extended.md)
 
 ### 10. SciPy
 
 Sbírka vědeckých algoritmů nad poli NumPy. Ukážeme, kdy a k čemu použít numerickou integraci, optimalizaci, statistiku a rozdělení pravděpodobnosti, interpolaci a lineární algebru.
 
-[Základní část](knihovny/scipy/README.md) · [Rozšiřující část](knihovny/scipy/scipy-extended.md)
+[Základní část](knihovny/scipy/) · [Rozšiřující část](knihovny/scipy/scipy-extended.md)
 
 ### 11. OpenCV
 
 Zpracování obrazu a počítačové vidění. Zjistíte, jak se obrázek reprezentuje v počítači, jak ho upravovat, hledat v něm hrany a tvary a pracovat s obrazem z kamery.
 
-[Základní část](knihovny/opencv/README.md) · [Rozšiřující část](knihovny/opencv/opencv-extended.md)
+[Základní část](knihovny/opencv/) · [Rozšiřující část](knihovny/opencv/opencv-extended.md)
 
 ### 12. PyTorch Lightning
 
 Závěrečná kapitola je úvodem do hlubokého učení. Seznámíte se s tenzory, neuronovými sítěmi a principem jejich trénování a vytvoříte jednoduchou „Hello World“ síť s knihovnou PyTorch Lightning.
 
-[Základní část](knihovny/pytorch-lightning/README.md) · [Rozšiřující část](knihovny/pytorch-lightning/pytorch-lightning-extended.md)
+[Základní část](knihovny/pytorch-lightning/) · [Rozšiřující část](knihovny/pytorch-lightning/pytorch-lightning-extended.md)
 
 ## Jak s kurzem pracovat
 

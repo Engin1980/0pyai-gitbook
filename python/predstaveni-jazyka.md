@@ -1,6 +1,6 @@
 # Představení jazyka
 
-V předchozí kapitole jsme si připravili prostředí, ve kterém můžeme s Pythonem pracovat. Nyní se podíváme na samotný jazyk a na to, čím se jeho programovací styl liší od jiných jazyků. Python je známý svou čitelností a stručností, což není náhoda, ale výsledek několika promyšlených designových rozhodnutí. V této kapitole si představíme dynamické typování a *duck typing*, vysvětlíme, co v Pythonu znamená pravdivostní hodnota libovolného objektu, a nakonec si ukážeme anotace typů (*type hints*), které do dynamického jazyka vnášejí část jistoty známé ze statických jazyků.
+V předchozí kapitole jsme si připravili prostředí, ve kterém můžeme s Pythonem pracovat. Nyní se podíváme na samotný jazyk a na to, čím se jeho programovací styl liší od jiných jazyků. Python je známý svou čitelností a stručností, což není náhoda, ale výsledek několika promyšlených designových rozhodnutí. V této kapitole si představíme dynamické typování a _duck typing_, vysvětlíme, co v Pythonu znamená pravdivostní hodnota libovolného objektu, a nakonec si ukážeme anotace typů (_type hints_), které do dynamického jazyka vnášejí část jistoty známé ze statických jazyků.
 
 ## Základní vzhled programu v Pythonu
 
@@ -19,7 +19,7 @@ else:
 Za řádkem končícím dvojtečkou, jako je `if`, `else`, `for`, `while`, `def` nebo `class`, následuje odsazený blok. Středníky na konci řádků se nepíšou a komentáře začínají znakem `#`. Pro pojmenování proměnných a funkcí se používá styl `snake_case`, tedy malá písmena a podtržítka. Další doporučení najdete v dokumentu PEP 8, což je oficiální stylový průvodce jazykem Python.
 
 {% hint style="info" %}
-Čitelnost kódu je v Pythonu považována za hodnotu samu o sobě. Po zadání `import this` do interaktivní konzole se vypíše tzv. *Zen of Python*, sbírka zásad, které tuto filozofii shrnují.
+Čitelnost kódu je v Pythonu považována za hodnotu samu o sobě. Po zadání `import this` do interaktivní konzole se vypíše tzv. _Zen of Python_, sbírka zásad, které tuto filozofii shrnují.
 {% endhint %}
 
 ## Dynamické typování
@@ -39,7 +39,7 @@ x = [1, 2, 3]
 print(type(x))      # <class 'list'>
 ```
 
-![Proměnná vs. Typ](../imgs/varAndType.jpg)
+![Proměnná vs. Typ](../.gitbook/assets/varAndType.jpg)
 
 Funkce `type()` zjistí typ objektu a funkce `isinstance()` umožňuje ověřit, zda objekt patří k určitému typu:
 
@@ -74,7 +74,7 @@ Výhodou dynamického typování je pohodlnost a rychlost vývoje. Kód je krat�
 
 ## Duck typing
 
-Důsledkem dynamického typování je styl programování zvaný **duck typing**. Název pochází z rčení: *„Pokud něco chodí jako kachna a kváká jako kachna, pak je to pravděpodobně kachna.“* Python se při volání operace nezajímá o to, jakého typu objekt je, ale o to, zda objekt danou operaci umí.
+Důsledkem dynamického typování je styl programování zvaný **duck typing**. Název pochází z rčení: _„Pokud něco chodí jako kachna a kváká jako kachna, pak je to pravděpodobně kachna.“_ Python se při volání operace nezajímá o to, jakého typu objekt je, ale o to, zda objekt danou operaci umí.
 
 Podívejme se na funkci, která vypíše všechny prvky nějaké kolekce:
 
@@ -110,9 +110,9 @@ pust_zvuk(Pes())      # Haf!
 pust_zvuk(Robot())    # Bzzzt!
 ```
 
-![Duck typing](../imgs/duckTyping.jpg)
+![Duck typing](../.gitbook/assets/duckTyping.jpg)
 
-Pokud bychom funkci předali objekt, který metodu `ozvi_se` nemá, skončí běh chybou `AttributeError`. V Pythonu se běžně používá přístup označovaný zkratkou **EAFP** (*Easier to Ask Forgiveness than Permission*, tedy „je jednodušší žádat o odpuštění než o svolení“). Místo předchozí kontroly typu se operace rovnou provede a případná chyba se ošetří:
+Pokud bychom funkci předali objekt, který metodu `ozvi_se` nemá, skončí běh chybou `AttributeError`. V Pythonu se běžně používá přístup označovaný zkratkou **EAFP** (_Easier to Ask Forgiveness than Permission_, tedy „je jednodušší žádat o odpuštění než o svolení“). Místo předchozí kontroly typu se operace rovnou provede a případná chyba se ošetří:
 
 ```python
 try:
@@ -121,11 +121,11 @@ except AttributeError:
     print("Tento objekt neumí vydávat zvuky")
 ```
 
-Opačný přístup, kdy se předem zkoumá, zda je vše v pořádku, se označuje **LBYL** (*Look Before You Leap*). V Pythonu je méně obvyklý, ale má své místo, například při ověřování vstupu od uživatele. K duck typingu se vrátíme v kapitole o objektově orientovaném programování, kde si ukážeme, jak se vztahuje k dědičnosti a polymorfismu.
+Opačný přístup, kdy se předem zkoumá, zda je vše v pořádku, se označuje **LBYL** (_Look Before You Leap_). V Pythonu je méně obvyklý, ale má své místo, například při ověřování vstupu od uživatele. K duck typingu se vrátíme v kapitole o objektově orientovaném programování, kde si ukážeme, jak se vztahuje k dědičnosti a polymorfismu.
 
 ## Truthy a falsy hodnoty
 
-V podmínkách, jako je `if` nebo `while`, očekáváme logickou hodnotu `True` nebo `False`. Python je však při vyhodnocování podmínek velkorysý: jako pravdivostní hodnotu lze použít libovolný objekt. Zda se objekt chová jako pravdivý (*truthy*) nebo nepravdivý (*falsy*), zjistíte funkcí `bool()`.
+V podmínkách, jako je `if` nebo `while`, očekáváme logickou hodnotu `True` nebo `False`. Python je však při vyhodnocování podmínek velkorysý: jako pravdivostní hodnotu lze použít libovolný objekt. Zda se objekt chová jako pravdivý (_truthy_) nebo nepravdivý (_falsy_), zjistíte funkcí `bool()`.
 
 Nepravdivé jsou následující hodnoty: `None`, `False`, nula jakéhokoli číselného typu (`0`, `0.0`), prázdné kolekce (`[]`, `()`, `{}`, `set()`) a prázdný řetězec `""`. Všechno ostatní je pravdivé.
 
@@ -186,7 +186,7 @@ Své vlastní třídy můžete naučit, aby se v podmínkách chovaly jako pravd
 
 ## Type hints
 
-Dynamické typování je pohodlné, ale ve větších projektech zhoršuje přehlednost. Při pohledu na funkci `def spocitej(a, b):` nelze poznat, zda očekává čísla, řetězce, nebo seznamy. Od verze 3.5 proto Python umožňuje typy volitelně zapisovat pomocí **anotací typů** (*type hints*).
+Dynamické typování je pohodlné, ale ve větších projektech zhoršuje přehlednost. Při pohledu na funkci `def spocitej(a, b):` nelze poznat, zda očekává čísla, řetězce, nebo seznamy. Od verze 3.5 proto Python umožňuje typy volitelně zapisovat pomocí **anotací typů** (_type hints_).
 
 ```python
 def secti(a: int, b: int) -> int:
@@ -198,7 +198,7 @@ vek: int = 25
 
 Za názvem parametru následuje dvojtečka a typ, za šipkou `->` typ návratové hodnoty. Anotovat lze i proměnné.
 
-Je zásadní si uvědomit, že **Python anotace za běhu nekontroluje**. Interpret je při spuštění ignoruje, takže volání `secti("a", "b")` proběhne a vrátí `"ab"`. Anotace nejsou povinné a nezpůsobují chybu ani žádné zpomalení. Mají tři hlavní přínosy: slouží jako dokumentace přímo v kódu, editor je využívá k doplňování a ke kontrole a externí nástroje, tzv. *type checkery* (například **mypy**, **pyright** nebo **ty**), na jejich základě odhalí chyby ještě před spuštěním programu.
+Je zásadní si uvědomit, že **Python anotace za běhu nekontroluje**. Interpret je při spuštění ignoruje, takže volání `secti("a", "b")` proběhne a vrátí `"ab"`. Anotace nejsou povinné a nezpůsobují chybu ani žádné zpomalení. Mají tři hlavní přínosy: slouží jako dokumentace přímo v kódu, editor je využívá k doplňování a ke kontrole a externí nástroje, tzv. _type checkery_ (například **mypy**, **pyright** nebo **ty**), na jejich základě odhalí chyby ještě před spuštěním programu.
 
 ```console
 pip install mypy
@@ -207,13 +207,13 @@ mypy muj_program.py
 
 Ukázkový výstup kontroly vypadá například takto:
 
-```text
+```
 muj_program.py:5: error: Argument 1 to "secti" has incompatible type "str"; expected "int"
 ```
 
 VS Code s rozšířením Pylance i PyCharm provádějí podobnou kontrolu přímo při psaní a chyby podtrhují v editoru.
 
-![Python: Type Hints](../imgs/python-hint.jpg)
+![Python: Type Hints](../.gitbook/assets/python-hint.jpg)
 
 ### Složitější typy
 

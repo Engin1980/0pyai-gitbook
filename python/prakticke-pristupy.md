@@ -115,17 +115,17 @@ Při vývoji lze program ladit pomocí `print`, ale ve skutečné aplikaci to ne
 
 Každá zpráva má **úroveň závažnosti**. Čím vyšší úroveň, tím důležitější zpráva:
 
-| Úroveň | Použití |
-| --- | --- |
-| `DEBUG` | podrobné informace pro ladění |
-| `INFO` | potvrzení, že vše probíhá, jak má |
-| `WARNING` | něco neočekávaného, ale program běží dál |
-| `ERROR` | funkci se nepodařilo provést |
+| Úroveň     | Použití                                        |
+| ---------- | ---------------------------------------------- |
+| `DEBUG`    | podrobné informace pro ladění                  |
+| `INFO`     | potvrzení, že vše probíhá, jak má              |
+| `WARNING`  | něco neočekávaného, ale program běží dál       |
+| `ERROR`    | funkci se nepodařilo provést                   |
 | `CRITICAL` | závažná chyba, program možná nemůže pokračovat |
 
 Nastavíme minimální úroveň a zprávy pod touto úrovní se zahodí. Při vývoji tak můžeme zapnout `DEBUG` a v produkci stačí `INFO` nebo `WARNING`.
 
-![Úrovně logování](../imgs/logLevels.jpg)
+![Úrovně logování](../.gitbook/assets/logLevels.jpg)
 
 ```python
 import logging
@@ -145,7 +145,7 @@ logger.error("Nepodařilo se připojit k databázi")
 
 Výstup může vypadat takto:
 
-```text
+```
 2025-03-14 10:15:42,123 [INFO] __main__: Aplikace byla spuštěna
 2025-03-14 10:15:42,124 [WARNING] __main__: Disk je téměř plný
 2025-03-14 10:15:42,124 [ERROR] __main__: Nepodařilo se připojit k databázi
@@ -155,7 +155,7 @@ Volání `logging.getLogger(__name__)` vytvoří pojmenovaný logger podle jmén
 
 ### Logování do souboru a výjimky
 
-Zprávy lze místo na obrazovku směrovat do souboru parametrem `filename`. Ukázka také ukazuje, jak zalogovat výjimku včetně jejího výpisu volání (*traceback*) pomocí `logger.exception()`:
+Zprávy lze místo na obrazovku směrovat do souboru parametrem `filename`. Ukázka také ukazuje, jak zalogovat výjimku včetně jejího výpisu volání (_traceback_) pomocí `logger.exception()`:
 
 ```python
 import logging
@@ -181,7 +181,7 @@ deleni(10, 0)
 Všimněte si, že hodnoty do zprávy předáváme jako samostatné argumenty (`%s`) a nepoužíváme f-řetězec. Logging tak text sestaví jen tehdy, když se zpráva opravdu zaznamená.
 
 {% hint style="info" %}
-Pro složitější potřeby, například zápis na obrazovku i do souboru zároveň nebo rotaci velkých logů, má `logging` další komponenty: *handlery* (kam zprávy posílat), *formattery* (jak vypadají) a *filtry*. Konfiguraci lze zadat i ze souboru nebo slovníkem pomocí `logging.config.dictConfig`.
+Pro složitější potřeby, například zápis na obrazovku i do souboru zároveň nebo rotaci velkých logů, má `logging` další komponenty: _handlery_ (kam zprávy posílat), _formattery_ (jak vypadají) a _filtry_. Konfiguraci lze zadat i ze souboru nebo slovníkem pomocí `logging.config.dictConfig`.
 {% endhint %}
 
 ## JSON, CSV, YAML a práce s daty
@@ -190,16 +190,16 @@ Data se mezi programy ukládají a vyměňují v standardizovaných textových f
 
 ### JSON
 
-**JSON** (*JavaScript Object Notation*) je nejrozšířenější formát pro výměnu dat, zejména na webu a v API. Podporuje objekty (slovníky), pole (seznamy), řetězce, čísla, logické hodnoty a `null`. Odpovídá základním datovým strukturám Pythonu, takže se mezi nimi převádí velmi přirozeně:
+**JSON** (_JavaScript Object Notation_) je nejrozšířenější formát pro výměnu dat, zejména na webu a v API. Podporuje objekty (slovníky), pole (seznamy), řetězce, čísla, logické hodnoty a `null`. Odpovídá základním datovým strukturám Pythonu, takže se mezi nimi převádí velmi přirozeně:
 
-| JSON | Python |
-| --- | --- |
-| objekt `{}` | `dict` |
-| pole `[]` | `list` |
-| řetězec | `str` |
-| číslo | `int` / `float` |
+| JSON             | Python           |
+| ---------------- | ---------------- |
+| objekt `{}`      | `dict`           |
+| pole `[]`        | `list`           |
+| řetězec          | `str`            |
+| číslo            | `int` / `float`  |
 | `true` / `false` | `True` / `False` |
-| `null` | `None` |
+| `null`           | `None`           |
 
 Modul `json` je součástí standardní knihovny. Funkce `dumps` a `loads` převádějí mezi Pythonem a řetězcem, funkce `dump` a `load` přímo pracují se souborem.
 
@@ -233,9 +233,9 @@ Parametr `indent` zpřehlední výpis odsazením a `ensure_ascii=False` zajistí
 
 ### CSV
 
-**CSV** (*Comma-Separated Values*) je jednoduchý tabulkový formát. Každý řádek je jeden záznam a hodnoty jsou odděleny oddělovačem, nejčastěji čárkou nebo (v českém prostředí a v Excelu) středníkem. První řádek obvykle obsahuje názvy sloupců. Je to oblíbený formát pro export z tabulkových procesorů a databází.
+**CSV** (_Comma-Separated Values_) je jednoduchý tabulkový formát. Každý řádek je jeden záznam a hodnoty jsou odděleny oddělovačem, nejčastěji čárkou nebo (v českém prostředí a v Excelu) středníkem. První řádek obvykle obsahuje názvy sloupců. Je to oblíbený formát pro export z tabulkových procesorů a databází.
 
-```text
+```
 jmeno,vek,mesto
 Jana,21,Brno
 Petr,34,Praha
@@ -316,7 +316,7 @@ Pro načítání vždy používejte **`yaml.safe_load`**, nikoli `yaml.load`. Fu
 
 Formáty se liší zaměřením. JSON je ideální pro strojovou výměnu dat mezi programy a pro API. CSV je vhodné pro tabulková data s pevnými sloupci, zejména když s nimi pracuje i Excel. YAML se hodí pro konfigurace upravované ručně, kde oceníme komentáře a přehlednost.
 
-![Reprezentace dat v různých formátech](../imgs/formats.jpg)
+![Reprezentace dat v různých formátech](../.gitbook/assets/formats.jpg)
 
 ```mermaid
 flowchart TD

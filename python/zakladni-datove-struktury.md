@@ -1,6 +1,6 @@
 # Základní datové struktury
 
-Každý program pracuje s daty a Python nabízí bohatou sadu vestavěných typů, které pokryjí většinu potřeb. V této kapitole začneme nejjednoduššími hodnotami, tedy čísly, řetězci a logickými hodnotami, a speciální hodnotou `None`. Potom přejdeme ke kolekcím, které umožňují uchovávat více hodnot najednou: seznamům, n-ticím, množinám a slovníkům. Vysvětlíme si zásadní rozdíl mezi měnitelnými a neměnitelnými objekty a ukážeme, jak pomocí dekorátoru `@dataclass` snadno vytvářet vlastní datové typy. Na závěr se podíváme na pokročilejší práci s kolekcemi, kterou se Python odlišuje od mnoha jiných jazyků: řezy, rozbalování, *comprehensions*, iterátory a generátory.
+Každý program pracuje s daty a Python nabízí bohatou sadu vestavěných typů, které pokryjí většinu potřeb. V této kapitole začneme nejjednoduššími hodnotami, tedy čísly, řetězci a logickými hodnotami, a speciální hodnotou `None`. Potom přejdeme ke kolekcím, které umožňují uchovávat více hodnot najednou: seznamům, n-ticím, množinám a slovníkům. Vysvětlíme si zásadní rozdíl mezi měnitelnými a neměnitelnými objekty a ukážeme, jak pomocí dekorátoru `@dataclass` snadno vytvářet vlastní datové typy. Na závěr se podíváme na pokročilejší práci s kolekcemi, kterou se Python odlišuje od mnoha jiných jazyků: řezy, rozbalování, _comprehensions_, iterátory a generátory.
 
 ## Základní skalární typy
 
@@ -44,7 +44,7 @@ basen = """První řádek
 druhý řádek"""
 ```
 
-Nejpohodlnější způsob, jak do textu vložit hodnoty proměnných, jsou **f-řetězce** (*f-strings*), které před uvozovkou mají písmeno `f` a výrazy se v nich zapisují do složených závorek:
+Nejpohodlnější způsob, jak do textu vložit hodnoty proměnných, jsou **f-řetězce** (_f-strings_), které před uvozovkou mají písmeno `f` a výrazy se v nich zapisují do složených závorek:
 
 ```python
 jmeno = "Jana"
@@ -88,12 +88,12 @@ if vysledek is None:
 
 Kolekce uchovávají více hodnot. Python má čtyři základní vestavěné kolekce, které se liší tím, zda zachovávají pořadí, zda povolují duplicity a zda je lze měnit.
 
-| Typ | Zápis | Uspořádaný | Duplicity | Měnitelný |
-| --- | --- | --- | --- | --- |
-| `list` (seznam) | `[1, 2, 3]` | ano | ano | ano |
-| `tuple` (n-tice) | `(1, 2, 3)` | ano | ano | ne |
-| `set` (množina) | `{1, 2, 3}` | ne | ne | ano |
-| `dict` (slovník) | `{"a": 1}` | ano (od 3.7) | klíče ne | ano |
+| Typ              | Zápis       | Uspořádaný   | Duplicity | Měnitelný |
+| ---------------- | ----------- | ------------ | --------- | --------- |
+| `list` (seznam)  | `[1, 2, 3]` | ano          | ano       | ano       |
+| `tuple` (n-tice) | `(1, 2, 3)` | ano          | ano       | ne        |
+| `set` (množina)  | `{1, 2, 3}` | ne           | ne        | ano       |
+| `dict` (slovník) | `{"a": 1}`  | ano (od 3.7) | klíče ne  | ano       |
 
 ### Seznam (list)
 
@@ -163,7 +163,7 @@ print(a ^ b)    # symetrický rozdíl: {1, 2, 5}
 print(list(set([1, 2, 2, 3, 3, 3])))   # rychlé odstranění duplicit
 ```
 
-![Operace množin](../imgs/setOperations.jpg)
+![Operace množin](../.gitbook/assets/setOperations.jpg)
 
 Prázdnou množinu je nutné vytvořit pomocí `set()`, protože `{}` označuje prázdný slovník.
 
@@ -203,7 +203,7 @@ print(pocty.most_common(1))     # [('a', 5)]
 
 ## Měnitelné a neměnitelné typy
 
-Objekty v Pythonu se dělí na **měnitelné** (*mutable*), které lze po vytvoření upravit, a **neměnitelné** (*immutable*), které upravit nelze. K neměnitelným patří `int`, `float`, `bool`, `str`, `tuple` a `frozenset`. Měnitelné jsou `list`, `set` a `dict`.
+Objekty v Pythonu se dělí na **měnitelné** (_mutable_), které lze po vytvoření upravit, a **neměnitelné** (_immutable_), které upravit nelze. K neměnitelným patří `int`, `float`, `bool`, `str`, `tuple` a `frozenset`. Měnitelné jsou `list`, `set` a `dict`.
 
 Rozdíl je důležitý kvůli tomu, jak Python pracuje s proměnnými. Přiřazení nevytváří kopii hodnoty, ale pouze nechá proměnnou odkazovat na stejný objekt. U neměnitelných typů to nevadí, protože objekt nikdo nezmění. U měnitelných typů však může nastat překvapení:
 
@@ -232,7 +232,7 @@ print(a)              # [1, 2, 3]
 print(b)              # [1, 2, 3, 4]
 ```
 
-Tato kopie je ovšem **mělká** (*shallow copy*): zkopíruje se jen vnější seznam, ale vnořené měnitelné objekty zůstanou sdílené. Pro úplnou kopii slouží `copy.deepcopy()`:
+Tato kopie je ovšem **mělká** (_shallow copy_): zkopíruje se jen vnější seznam, ale vnořené měnitelné objekty zůstanou sdílené. Pro úplnou kopii slouží `copy.deepcopy()`:
 
 ```python
 import copy
@@ -317,7 +317,7 @@ print(c[::-1])     # obrácené pořadí
 print("Python"[1:4])    # "yth"
 ```
 
-![Slicing](../imgs/slicing.jpg)
+![Slicing](../.gitbook/assets/slicing.jpg)
 
 Řez vždy vytvoří novou (mělkou) kopii. Proto `c[:]` je rychlý způsob, jak seznam zkopírovat.
 

@@ -4,7 +4,7 @@ Reálná data málokdy přicházejí jako čisté pole čísel. Mají sloupce s 
 
 ## Účel a využití knihovny Pandas
 
-Pandas (název vychází z *panel data*) je nejpoužívanější knihovna pro **analýzu a zpracování tabulkových dat** v Pythonu. Typické úlohy, pro které se používá, zahrnují čištění dat z různých zdrojů, jejich prozkoumání, výpočet souhrnných statistik, příprava dat pro strojové učení nebo pro vizualizaci. Kde dříve člověk sahal po Excelu nebo SQL, dnes často píše několik řádků v Pandas, a navíc získá reprodukovatelný postup, který lze opakovat nad novými daty.
+Pandas (název vychází z _panel data_) je nejpoužívanější knihovna pro **analýzu a zpracování tabulkových dat** v Pythonu. Typické úlohy, pro které se používá, zahrnují čištění dat z různých zdrojů, jejich prozkoumání, výpočet souhrnných statistik, příprava dat pro strojové učení nebo pro vizualizaci. Kde dříve člověk sahal po Excelu nebo SQL, dnes často píše několik řádků v Pandas, a navíc získá reprodukovatelný postup, který lze opakovat nad novými daty.
 
 Knihovna se instaluje do virtuálního prostředí a importuje se podle konvence pod zkratkou `pd`:
 
@@ -49,7 +49,7 @@ flowchart LR
     DF --> C3["sloupec 'mesto' (Series)"]
 ```
 
-![Pandas: Dataframe](../../imgs/pandas-dataframe.jpg)
+![Pandas: Dataframe](../../.gitbook/assets/pandas-dataframe.jpg)
 
 ## Vytváření DataFrame
 
@@ -138,7 +138,7 @@ print(df.describe())   # souhrnné statistiky číselných sloupců
 
 Metoda `info()` je nejlepší první pohled: ukáže, kolik záznamů je v každém sloupci vyplněno (a tedy kde chybí hodnoty), a jaké typy sloupce mají. Výstup `describe()` vypadá například takto:
 
-```text
+```
              vek          plat
 count   4.000000      4.000000
 mean   32.000000  48500.000000
@@ -175,9 +175,9 @@ print(df.plat)                   # zkratka, funguje jen pro „bezpečné“ ná
 
 Pro výběr řádků a buněk slouží dva atributy, které se liší tím, jak adresují data.
 
-**`iloc`** (*integer location*) vybírá podle **pozice**, tedy pořadového čísla řádku a sloupce, od nuly. Koncový index se do řezu nezahrnuje, stejně jako u seznamů.
+**`iloc`** (_integer location_) vybírá podle **pozice**, tedy pořadového čísla řádku a sloupce, od nuly. Koncový index se do řezu nezahrnuje, stejně jako u seznamů.
 
-**`loc`** (*location*) vybírá podle **popisků** indexu a názvů sloupců. V řezu je koncový popisek zahrnut.
+**`loc`** (_location_) vybírá podle **popisků** indexu a názvů sloupců. V řezu je koncový popisek zahrnut.
 
 ```python
 print(df.iloc[0])              # první řádek
@@ -198,7 +198,7 @@ print(d.loc["Eva", "plat"])    # 47000
 print(d.iloc[2, 2])            # 47000, stejná buňka podle pozice
 ```
 
-![Pandas: loc vs. iloc](../../imgs/pandas-lociloc.jpg)
+![Pandas: loc vs. iloc](../../.gitbook/assets/pandas-lociloc.jpg)
 
 ## Filtrování dat
 
@@ -260,7 +260,7 @@ Většina metod Pandas, včetně `drop`, `sort_values` a `rename`, **nemění p�
 
 ## Práce s chybějícími hodnotami
 
-V reálných datech často nějaké hodnoty chybí. Pandas je označuje hodnotou `NaN` (*Not a Number*), kterou známe z NumPy. Vytvoříme si tabulku s chybějícími údaji:
+V reálných datech často nějaké hodnoty chybí. Pandas je označuje hodnotou `NaN` (_Not a Number_), kterou známe z NumPy. Vytvoříme si tabulku s chybějícími údaji:
 
 ```python
 d = pd.DataFrame({

@@ -4,9 +4,9 @@ V předchozích kapitolách jsme pracovali s čísly pomocí seznamů a cyklů. 
 
 ## Účel a využití knihovny NumPy
 
-NumPy (*Numerical Python*) přidává do Pythonu efektivní práci s **vícerozměrnými poli čísel** a rozsáhlou sadu matematických operací nad nimi. Jeho jádro je napsané v jazycích C a Fortran, takže náročné výpočty probíhají ve strojovém kódu a ne v interpretu Pythonu. Připomíná to myšlenku z první kapitoly: Python deleguje práci na rychlé knihovny.
+NumPy (_Numerical Python_) přidává do Pythonu efektivní práci s **vícerozměrnými poli čísel** a rozsáhlou sadu matematických operací nad nimi. Jeho jádro je napsané v jazycích C a Fortran, takže náročné výpočty probíhají ve strojovém kódu a ne v interpretu Pythonu. Připomíná to myšlenku z první kapitoly: Python deleguje práci na rychlé knihovny.
 
-Rozdíl proti seznamům je dvojí. Za prvé, NumPy pole uchovává prvky **jednoho typu** v souvislém bloku paměti, což je úspornější a rychlejší. Za druhé, operace se provádějí **nad celým polem najednou**, bez explicitního cyklu. Tomuto přístupu se říká *vektorizace*.
+Rozdíl proti seznamům je dvojí. Za prvé, NumPy pole uchovává prvky **jednoho typu** v souvislém bloku paměti, což je úspornější a rychlejší. Za druhé, operace se provádějí **nad celým polem najednou**, bez explicitního cyklu. Tomuto přístupu se říká _vektorizace_.
 
 ```python
 import numpy as np
@@ -32,7 +32,7 @@ print(np.__version__)
 
 ## Pole ndarray
 
-Základním objektem knihovny je **`ndarray`** (*n-dimensional array*), vícerozměrné pole prvků stejného typu. Vytvoříme ho například z (vnořeného) seznamu pomocí `np.array`:
+Základním objektem knihovny je **`ndarray`** (_n-dimensional array_), vícerozměrné pole prvků stejného typu. Vytvoříme ho například z (vnořeného) seznamu pomocí `np.array`:
 
 ```python
 a = np.array([1, 2, 3])                 # jednorozměrné pole (vektor)
@@ -45,14 +45,14 @@ print(type(b))     # <class 'numpy.ndarray'>
 
 Výstup `print(b)` je přehledně zformátován:
 
-```text
+```
 [[1 2 3]
  [4 5 6]]
 ```
 
 Pole mohou mít libovolný počet dimenzí. Jednorozměrné pole si lze představit jako řadu čísel, dvourozměrné jako tabulku, třírozměrné jako „kostku“ čísel (například barevný obrázek s výškou, šířkou a barevnými kanály).
 
-![Numpy pole](../../imgs/numpyArrays.jpg)
+![Numpy pole](../../.gitbook/assets/numpyArrays.jpg)
 
 ## Dimenze a tvar pole
 
@@ -253,7 +253,7 @@ print(m.mean(axis=0))    # [2.5 3.5 4.5]
 print(m.max(axis=1))     # [3 6]
 ```
 
-![Numpy: Osy/Axis](../../imgs/numpyAxes.jpg)
+![Numpy: Osy/Axis](../../.gitbook/assets/numpyAxes.jpg)
 
 Pamatovat si, kterou osu použít, bývá zpočátku obtížné. Pomáhá si říct, že `axis=0` znamená „pro každý sloupec spočítej výsledek přes všechny řádky“ a `axis=1` „pro každý řádek spočítej výsledek přes všechny sloupce“.
 
@@ -286,7 +286,7 @@ print(m.flatten())               # [ 0  1  2  3  4  5  6  7  8  9 10 11]
 
 Prvky se při změně tvaru čtou po řádcích, takže pole nejprve zaplní první řádek, pak druhý atd.
 
-![Numpy: Reshape](../../imgs/numpyReshape.jpg)
+![Numpy: Reshape](../../.gitbook/assets/numpyReshape.jpg)
 
 Změna tvaru je velmi častou operací. Například obrázek může být třeba převést na dlouhý vektor pro vstup do modelu a zase zpět.
 
@@ -306,7 +306,7 @@ print(m + radek)
 
 Vektor se virtuálně zopakoval pro každý řádek matice.
 
-![Numpy: Broadcasting](../../imgs/numpyBroadcasting.jpg)
+![Numpy: Broadcasting](../../.gitbook/assets/numpyBroadcasting.jpg)
 
 Skutečná kopie dat se přitom nevytváří, takže je to efektivní. Podobně lze přičíst sloupcový vektor:
 
@@ -423,7 +423,7 @@ print(np.vstack([a, b]).shape)    # (4, 2)
 print(np.hstack([a, b]).shape)    # (2, 4)
 ```
 
-![Numpy: Stacking](../../imgs/numpyStacking.jpg)
+![Numpy: Stacking](../../.gitbook/assets/numpyStacking.jpg)
 
 Spojovaná pole se musí shodovat ve všech rozměrech kromě osy, podél které se spojují. Opakem je rozdělování, k čemuž slouží `np.split`, případně `np.vsplit` a `np.hsplit`:
 

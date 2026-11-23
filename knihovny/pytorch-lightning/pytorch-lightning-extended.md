@@ -1,4 +1,4 @@
-# PyTorch Lightning - Extended
+# Pytorch Lightning - Extended
 
 > Rozšiřující část je nepovinná a slouží pouze jako další informační zdroj pro studenty.
 
@@ -43,9 +43,9 @@ with torch.no_grad():
 hodnota = y.detach()
 ```
 
-Gradienty lze také **omezit** (*gradient clipping*), pokud by příliš velké hodnoty způsobily nestabilní učení. V Lightning stačí parametr `Trainer(gradient_clip_val=1.0)`. Zablokování učení některých částí sítě se provádí vypnutím `requires_grad` u jejich parametrů, což využijeme při přenosu učení.
+Gradienty lze také **omezit** (_gradient clipping_), pokud by příliš velké hodnoty způsobily nestabilní učení. V Lightning stačí parametr `Trainer(gradient_clip_val=1.0)`. Zablokování učení některých částí sítě se provádí vypnutím `requires_grad` u jejich parametrů, což využijeme při přenosu učení.
 
-## training_step, validation_step a test_step
+## training\_step, validation\_step a test\_step
 
 V základní části jsme použili jen `training_step`. Lightning definuje stejný vzor pro tři fáze práce s modelem. Každá metoda dostane jednu dávku dat a spočítá potřebné hodnoty.
 
@@ -97,9 +97,9 @@ flowchart LR
     A --> D["trainer.test → test_step"]
 ```
 
-## configure_optimizers
+## configure\_optimizers
 
-Metoda `configure_optimizers` vrací optimalizátor, případně i plánovač (*scheduler*), který v průběhu trénování mění learning rate. Lightning ji zavolá jednou na začátku.
+Metoda `configure_optimizers` vrací optimalizátor, případně i plánovač (_scheduler_), který v průběhu trénování mění learning rate. Lightning ji zavolá jednou na začátku.
 
 ```python
 def configure_optimizers(self):
@@ -117,7 +117,7 @@ Tento plánovač sníží learning rate na polovinu, pokud se `val_loss` po tři
 
 **Learning rate** (rychlost učení) je pravděpodobně nejdůležitější hyperparametr trénování. Určuje velikost kroku, kterým se váhy posouvají proti gradientu. Příliš velký krok způsobí „přeskakování“ minima, ztráta kolísá nebo roste. Příliš malý krok učení extrémně zpomalí nebo se zasekne.
 
-![PyTorch: Learning rate](../../imgs/pytorch-ext-learningRate.jpg)
+![PyTorch: Learning rate](../../.gitbook/assets/pytorch-ext-learningRate.jpg)
 
 Praxe je následující: začít s osvědčenou hodnotou (u Adamu `1e-3`), sledovat křivku ztráty a podle ní hodnotu zvýšit či snížit, případně použít plánovač. Lightning umí hodnotu automaticky vyhledat nástrojem `Tuner(trainer).lr_find(model, train_loader)`.
 
@@ -129,17 +129,17 @@ Model se může naučit data špatně dvěma opačnými způsoby.
 
 **Overfitting** (přeučení) znamená, že model si „zapamatuje“ trénovací data včetně šumu a na nových datech selže. Chyba na trénovacích datech je nízká, ale na validačních roste. Pozná se podle rozevírající se mezery mezi křivkami trénovací a validační ztráty.
 
-![PyTorch: Overfitting vs Underfitting](../../imgs/pytorch-ext-overfitting.png)
+![PyTorch: Overfitting vs Underfitting](../../.gitbook/assets/pytorch-ext-overfitting.png)
 
 ## Regularizace
 
 **Regularizace** je soubor technik, které brání přeučení tím, že model „zjednodušují“ nebo omezují. Nejčastější z nich jsou:
 
-- **Dropout** (`nn.Dropout(0.3)`) při trénování náhodně vypíná část neuronů, takže se síť nemůže spoléhat na jednotlivé cesty,
-- **Weight decay** (L2 regularizace) trestá příliš velké váhy, nastavuje se parametrem optimalizátoru (`weight_decay=1e-2`),
-- **více dat a augmentace dat**, tedy uměle upravené kopie příkladů (zrcadlení, otočení obrázků),
-- **brzké zastavení** (*early stopping*), které zastaví trénování, jakmile se validační chyba přestane zlepšovat,
-- **menší model**, tedy méně vrstev či neuronů.
+* **Dropout** (`nn.Dropout(0.3)`) při trénování náhodně vypíná část neuronů, takže se síť nemůže spoléhat na jednotlivé cesty,
+* **Weight decay** (L2 regularizace) trestá příliš velké váhy, nastavuje se parametrem optimalizátoru (`weight_decay=1e-2`),
+* **více dat a augmentace dat**, tedy uměle upravené kopie příkladů (zrcadlení, otočení obrázků),
+* **brzké zastavení** (_early stopping_), které zastaví trénování, jakmile se validační chyba přestane zlepšovat,
+* **menší model**, tedy méně vrstev či neuronů.
 
 ```python
 self.sit = nn.Sequential(
@@ -170,7 +170,7 @@ Lightning obsahuje řadu hotových callbacků, z nichž dva nejdůležitější 
 
 ## ModelCheckpoint
 
-**`ModelCheckpoint`** ukládá model (tzv. *checkpoint*) během trénování, a to buď pravidelně, nebo vždy, když se zlepší sledovaná veličina. Díky tomu nepřijdeme o nejlepší model, ani když trénování selže, nebo se model později přeučí.
+**`ModelCheckpoint`** ukládá model (tzv. _checkpoint_) během trénování, a to buď pravidelně, nebo vždy, když se zlepší sledovaná veličina. Díky tomu nepřijdeme o nejlepší model, ani když trénování selže, nebo se model později přeučí.
 
 ```python
 from lightning.pytorch.callbacks import ModelCheckpoint
@@ -233,7 +233,7 @@ tensorboard --logdir logy
 
 Příkaz spustí lokální server (výchozí adresa `http://localhost:6006`), kde je možné křivky sledovat živě a porovnávat více běhů. Alternativou jsou cloudové nástroje, například Weights & Biases (`WandbLogger`) nebo MLflow.
 
-![PyTorch: Tensorboard (source: https://www.tensorflow.org/tensorboard)](../../imgs/PyTorch-tensorboard.gif)
+![PyTorch: Tensorboard (source: https://www.tensorflow.org/tensorboard)](../../.gitbook/assets/PyTorch-tensorboard.gif)
 
 ## Ukládání a načítání modelů
 

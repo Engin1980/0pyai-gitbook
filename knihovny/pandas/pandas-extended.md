@@ -102,7 +102,7 @@ flowchart LR
     F --> G
 ```
 
-![Pandas: Grouping](../../imgs/pandas-groupby.jpg)
+![Pandas: Grouping](../../.gitbook/assets/pandas-groupby.jpg)
 
 ## Agregace dat (agg)
 
@@ -153,7 +153,7 @@ print(pd.merge(zamestnanci, oddeleni, on="id", how="outer"))    # všechno z obo
 
 Parametr `how` určuje, které řádky se zachovají: `inner` jen ty s klíčem v obou tabulkách, `left` a `right` všechny z levé nebo pravé tabulky a `outer` všechny z obou. Chybějící protějšky jsou vyplněny `NaN`. Pokud se klíče jmenují v tabulkách jinak, použijí se parametry `left_on` a `right_on`.
 
-![Pandas: merging](../../imgs/pandas-merging.jpg)
+![Pandas: merging](../../.gitbook/assets/pandas-merging.jpg)
 
 ## Kontingenční tabulky (pivot\_table)
 
@@ -233,7 +233,7 @@ print(s.rolling(window=3).mean())
 
 Prvních několik hodnot je `NaN`, protože okno ještě nemá dost dat. To lze změnit parametrem `min_periods`. Stejně jako `mean` lze použít `sum`, `min`, `max` nebo `std`. Podobná operace `expanding` počítá statistiku od počátku do aktuálního bodu a `shift` posouvá řadu o zadaný počet kroků, což se hodí pro porovnání s předchozí hodnotou.
 
-![Pandas: Klouzavá okna](../../imgs/pandas-rolling-window.jpg)
+![Pandas: Klouzavá okna](../../.gitbook/assets/pandas-rolling-window.jpg)
 
 ## Shrnutí
 

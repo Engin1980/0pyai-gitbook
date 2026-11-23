@@ -27,11 +27,11 @@ ax.axis("equal")             # kruh, ne elipsa
 plt.show()
 ```
 
-![MatPlotLib: Pie Chart](../../imgs/pltPieChart.jpg)
+![MatPlotLib: Pie Chart](../../.gitbook/assets/pltPieChart.jpg)
 
 ## Krabicový graf (boxplot)
 
-**Krabicový graf** (*box plot*) shrnuje rozdělení dat pomocí pěti hodnot. Krabice vymezuje oblast mezi prvním a třetím kvartilem, čára uvnitř je medián a „vousy“ ukazují rozsah dat bez odlehlých hodnot, které se vykreslí jako samostatné body. Hodí se zejména k porovnání rozdělení více skupin.
+**Krabicový graf** (_box plot_) shrnuje rozdělení dat pomocí pěti hodnot. Krabice vymezuje oblast mezi prvním a třetím kvartilem, čára uvnitř je medián a „vousy“ ukazují rozsah dat bez odlehlých hodnot, které se vykreslí jako samostatné body. Hodí se zejména k porovnání rozdělení více skupin.
 
 ```python
 rng = np.random.default_rng(1)
@@ -45,13 +45,15 @@ ax.set_ylabel("Hodnota")
 plt.show()
 ```
 
-TODO HINT: (Ve starších verzích Matplotlibu se parametr jmenuje `labels` místo `tick_labels`.)
+{% hint style="info" %}
+Ve starších verzích Matplotlibu se parametr jmenuje `labels` místo `tick_labels`.
+{% endhint %}
 
-![MatPlotLib: Box plot](../../imgs/pltBoxPlot.png)
+![MatPlotLib: Box plot](../../.gitbook/assets/pltBoxPlot.png)
 
 ## Formátování os a jejich rozsah
 
-Rozsah os Matplotlib volí automaticky, ale často ho chceme upravit. Slouží k tomu metody `set_xlim` a `set_ylim`, případně zkratka `ax.set(xlim=..., ylim=...)`. Hodnoty na osách (*ticks*) a jejich popisky určují `set_xticks` a `set_xticklabels`.
+Rozsah os Matplotlib volí automaticky, ale často ho chceme upravit. Slouží k tomu metody `set_xlim` a `set_ylim`, případně zkratka `ax.set(xlim=..., ylim=...)`. Hodnoty na osách (_ticks_) a jejich popisky určují `set_xticks` a `set_xticklabels`.
 
 ```python
 x = np.linspace(0, 10, 200)
@@ -86,7 +88,7 @@ Mřížka by měla být nenápadná, aby nepřebíjela samotná data. Proto se o
 
 ## Značky datových bodů (Markers)
 
-U spojnicových grafů lze každý datový bod zvýraznit **značkou** (*marker*). Značky pomáhají poznat, kde jsou skutečně naměřená data, a odlišují více řad i bez barev.
+U spojnicových grafů lze každý datový bod zvýraznit **značkou** (_marker_). Značky pomáhají poznat, kde jsou skutečně naměřená data, a odlišují více řad i bez barev.
 
 ```python
 x = np.arange(1, 8)
@@ -144,7 +146,7 @@ plt.show()
 
 Parametr `yerr` (případně `xerr`) určuje velikost chyby, buď jednu hodnotu pro všechny body, nebo pole. Parametr `capsize` nastavuje délku příček na koncích úseček. Pro souvislou oblast nejistoty kolem čáry existuje i `ax.fill_between(x, y - chyba, y + chyba, alpha=0.3)`.
 
-![MatPlotLib: Error Bar](../../imgs/plt-errorbar.png)
+![MatPlotLib: Error Bar](../../.gitbook/assets/plt-errorbar.png)
 
 ## Více datových řad v jednom grafu
 
@@ -190,7 +192,7 @@ plt.show()
 
 Funkce `np.meshgrid` z jednorozměrných os vytvoří dvě pole souřadnic celé mřížky, nad kterými se pohodlně počítají hodnoty `Z`. Pohled na graf se mění atributy `ax.view_init(elev=30, azim=45)`. 3D grafy bývají efektní, ale hůře se z nich odečítají hodnoty, proto je dobré zvážit, zda by nebyl srozumitelnější vrstevnicový graf (`ax.contourf`) nebo teplotní mapa (`ax.imshow`).
 
-![MatPlotLib: 3D graf](../../imgs/plt-mesh.png)
+![MatPlotLib: 3D graf](../../.gitbook/assets/plt-mesh.png)
 
 ## Interaktivní grafy
 

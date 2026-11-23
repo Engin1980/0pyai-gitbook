@@ -36,7 +36,7 @@ clahe = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(8, 8))
 lepsi = clahe.apply(sedy)
 ```
 
-![OpenCV: Histogram](../../imgs/opencv-histogram.png)
+![OpenCV: Histogram](../../.gitbook/assets/opencv-histogram.png)
 
 ## Barevné kanály
 
@@ -91,7 +91,7 @@ adaptivni = cv2.adaptiveThreshold(
 
 Parametry `blockSize` a `C` je třeba vyladit podle obrázku. Adaptivní prahování se používá například při skenování textu nebo hledání čar na nerovnoměrně osvětleném pozadí.
 
-![OpenCV: Prahování](../../imgs/opencv-thresholding.png)
+![OpenCV: Prahování](../../.gitbook/assets/opencv-thresholding.png)
 
 ## Gaussovský a mediánový filtr
 
@@ -168,7 +168,7 @@ for k in kontury:
 
 Pro kruhy existuje i specializovaná Houghova transformace `cv2.HoughCircles` a pro úsečky `cv2.HoughLinesP`. Tento postup je jednoduchý a spoléhá na čistě nasnímané obrazy. Pro složitější scény se dnes používají neuronové sítě.
 
-![OpenCV: Detekce tvarů](../../imgs/opencv-shapes-detection.png)
+![OpenCV: Detekce tvarů](../../.gitbook/assets/opencv-shapes-detection.png)
 
 ## Maskování obrázků
 

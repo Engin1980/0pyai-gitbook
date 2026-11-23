@@ -1,16 +1,16 @@
-# SciPy
+# Scipy
 
 NumPy nabízí rychlá pole a základní matematiku, ale vědecké a inženýrské úlohy vyžadují mnohem víc: spočítat určitý integrál, najít minimum funkce, vyřešit rovnici, otestovat hypotézu nebo proložit hladkou křivku naměřenými body. Psát všechny tyto algoritmy znovu by bylo zbytečné a náchylné k chybám. Knihovna **SciPy** je sbírka ověřených numerických algoritmů, které řeší právě tyto úlohy. V této kapitole nepůjde o to zapamatovat si velké množství funkcí. Důležitější je pochopit, **k čemu SciPy slouží, které moduly existují a kdy po kterém sáhnout**. Ukážeme si numerickou integraci, optimalizaci a hledání kořenů, statistiku a rozdělení pravděpodobnosti, interpolaci a lineární algebru.
 
 ## Účel a využití knihovny SciPy
 
-SciPy (*Scientific Python*) je knihovna numerických metod pro vědecké výpočty. Zahrnuje algoritmy, které jsou často desítky let ověřované v jazycích Fortran a C, a zpřístupňuje je s pohodlným rozhraním Pythonu. Hodí se tam, kde potřebujeme **numerické řešení** úlohy, tedy přibližnou hodnotu spočítanou počítačem, a ne vzorec. Typické použití zahrnuje:
+SciPy (_Scientific Python_) je knihovna numerických metod pro vědecké výpočty. Zahrnuje algoritmy, které jsou často desítky let ověřované v jazycích Fortran a C, a zpřístupňuje je s pohodlným rozhraním Pythonu. Hodí se tam, kde potřebujeme **numerické řešení** úlohy, tedy přibližnou hodnotu spočítanou počítačem, a ne vzorec. Typické použití zahrnuje:
 
-- výpočet integrálů a řešení rovnic, které nelze vyjádřit v uzavřeném tvaru,
-- hledání optimálních parametrů modelu (nejmenší chyba, největší zisk),
-- statistickou analýzu měření a porovnání skupin dat,
-- doplnění hodnot mezi naměřenými body,
-- řešení soustav rovnic a operace s velkými maticemi.
+* výpočet integrálů a řešení rovnic, které nelze vyjádřit v uzavřeném tvaru,
+* hledání optimálních parametrů modelu (nejmenší chyba, největší zisk),
+* statistickou analýzu měření a porovnání skupin dat,
+* doplnění hodnot mezi naměřenými body,
+* řešení soustav rovnic a operace s velkými maticemi.
 
 Instalace a import:
 
@@ -43,17 +43,17 @@ Základní operace s poli (součty, indexování, funkce `sin` či `exp`) tak z�
 
 SciPy je organizováno do **podbalíčků**, z nichž každý řeší jednu oblast. Je třeba je importovat zvlášť, ať nenačítáme zbytečně celou knihovnu:
 
-| Modul | Oblast |
-| --- | --- |
-| `scipy.integrate` | numerická integrace a diferenciální rovnice |
-| `scipy.optimize` | optimalizace, hledání kořenů, prokládání křivek |
-| `scipy.stats` | statistika, rozdělení pravděpodobnosti, testy |
-| `scipy.interpolate` | interpolace a vyhlazení dat |
-| `scipy.linalg` | lineární algebra |
-| `scipy.signal`, `scipy.fft` | zpracování signálů, Fourierova transformace |
-| `scipy.sparse` | řídké matice |
-| `scipy.spatial` | prostorové struktury a vzdálenosti |
-| `scipy.ndimage` | zpracování n-rozměrných (obrazových) dat |
+| Modul                       | Oblast                                          |
+| --------------------------- | ----------------------------------------------- |
+| `scipy.integrate`           | numerická integrace a diferenciální rovnice     |
+| `scipy.optimize`            | optimalizace, hledání kořenů, prokládání křivek |
+| `scipy.stats`               | statistika, rozdělení pravděpodobnosti, testy   |
+| `scipy.interpolate`         | interpolace a vyhlazení dat                     |
+| `scipy.linalg`              | lineární algebra                                |
+| `scipy.signal`, `scipy.fft` | zpracování signálů, Fourierova transformace     |
+| `scipy.sparse`              | řídké matice                                    |
+| `scipy.spatial`             | prostorové struktury a vzdálenosti              |
+| `scipy.ndimage`             | zpracování n-rozměrných (obrazových) dat        |
 
 ```python
 from scipy import integrate, optimize, stats, interpolate, linalg
@@ -101,7 +101,8 @@ y = np.sin(x)
 print(integrate.trapezoid(y, x))    # ≈ 2.0
 print(integrate.simpson(y, x=x))    # ≈ 2.0, přesnější
 ```
-![SciPy: Integrál](../../imgs/scipy-integral.jpg)
+
+![SciPy: Integrál](../../.gitbook/assets/scipy-integral.jpg)
 
 ## Optimalizace (scipy.optimize)
 
@@ -138,7 +139,7 @@ Optimalizace nenajde vždy globální minimum. Pokud funkce má více lokálníc
 
 Tentýž princip se používá i při trénování modelů strojového učení: hledají se parametry, které minimalizují chybovou funkci. V kapitole o PyTorch Lightning se s ním setkáme znovu.
 
-![SciPy: Minimize](../../imgs/scipy-minimize.jpg)
+![SciPy: Minimize](../../.gitbook/assets/scipy-minimize.jpg)
 
 ### Hledání kořenů rovnic
 
@@ -177,13 +178,13 @@ Modul **`scipy.stats`** poskytuje pravděpodobnostní rozdělení, popisné stat
 
 Pro každé z desítek rozdělení (normální `norm`, rovnoměrné `uniform`, binomické `binom`, Poissonovo `poisson` a další) nabízí SciPy jednotné rozhraní. Nejdůležitější metody jsou:
 
-| Metoda | Význam |
-| --- | --- |
+| Metoda              | Význam                                                   |
+| ------------------- | -------------------------------------------------------- |
 | `pdf(x)` / `pmf(k)` | hustota (spojitá) / pravděpodobnostní funkce (diskrétní) |
-| `cdf(x)` | distribuční funkce, tedy P(X ≤ x) |
-| `ppf(q)` | kvantilová funkce, inverze `cdf` |
-| `rvs(size)` | generování náhodných čísel |
-| `mean()`, `std()` | střední hodnota a směrodatná odchylka |
+| `cdf(x)`            | distribuční funkce, tedy P(X ≤ x)                        |
+| `ppf(q)`            | kvantilová funkce, inverze `cdf`                         |
+| `rvs(size)`         | generování náhodných čísel                               |
+| `mean()`, `std()`   | střední hodnota a směrodatná odchylka                    |
 
 ```python
 from scipy import stats
@@ -202,7 +203,7 @@ vzorek = iq.rvs(size=5, random_state=42)    # 5 náhodných hodnot
 print(stats.binom.pmf(6, n=10, p=0.5))      # ≈ 0.2051
 ```
 
-![SciPy: Normální rozdělení](../../imgs/scipy-normalDist.jpg)
+![SciPy: Normální rozdělení](../../.gitbook/assets/scipy-normalDist.jpg)
 
 ### Popisné statistiky
 
@@ -264,7 +265,7 @@ y_jemne = spline(x_jemne)             # vyhodnocení ve velmi jemné síti
 
 Interpolační funkce se po vytvoření chová jako běžná funkce, kterou můžeme zavolat pro libovolnou hodnotu x v rozsahu dat. Mimo původní rozsah interpolace selže, protože by šlo o **extrapolaci**, jež je nespolehlivá. Pro dvourozměrná data existují `interp2d`/`RegularGridInterpolator` a pro nepravidelně rozmístěné body `griddata`.
 
-![SciPy: Interpolace](../../imgs/scipy-interpolate.jpg)
+![SciPy: Interpolace](../../.gitbook/assets/scipy-interpolate.jpg)
 
 ## Lineární algebra (scipy.linalg)
 
@@ -285,7 +286,7 @@ print(linalg.norm(A))     # Frobeniova norma
 
 Častým úkolem je najít vektor **x**, který splňuje soustavu **A·x = b**. Například soustava
 
-```text
+```
 3x + 2y = 12
  x + 4y = 14
 ```

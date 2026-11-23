@@ -1,10 +1,10 @@
-# PyTorch Lightning
+# Pytorch Lightning
 
 Zbývá poslední, nejnáročnější téma kurzu: neuronové sítě. Tato kapitola nemá za cíl udělat z vás odborníky na hluboké učení. Chceme, abyste pochopili, **k čemu neuronové sítě a knihovny PyTorch a PyTorch Lightning slouží, z jakých částí se trénování skládá a jak vypadá jednoduchý, ale funkční program**. Podrobnosti, které by vydaly na samostatný kurz, jsou záměrně vynechány nebo shrnuty v rozšiřující části. Projdeme základní pojmy hlubokého učení, tenzory a výpočty na GPU, definici sítě, vrstvy, aktivační funkce, ztrátovou funkci a optimalizátor, práci s daty a rozdělení na trénovací, validační a testovací množinu a nakonec si ukážeme, jak PyTorch Lightning zjednoduší trénovací cyklus. Cílem je „Hello World“ síť, která se naučí jednoduchou závislost z dat.
 
 ## Účel a využití PyTorch Lightning
 
-**Hluboké učení** (*deep learning*) je podoblast strojového učení, v níž se funkce, která z dat něco předpovídá, nevytváří ručně napsanými pravidly. Místo toho se její parametry **naučí z příkladů**. Využívá se pro rozpoznávání obrazu a řeči, strojový překlad, doporučovací systémy, předpovědi časových řad nebo generování textu a obrázků.
+**Hluboké učení** (_deep learning_) je podoblast strojového učení, v níž se funkce, která z dat něco předpovídá, nevytváří ručně napsanými pravidly. Místo toho se její parametry **naučí z příkladů**. Využívá se pro rozpoznávání obrazu a řeči, strojový překlad, doporučovací systémy, předpovědi časových řad nebo generování textu a obrázků.
 
 Pro práci s neuronovými sítěmi v Pythonu se nejčastěji používá knihovna **PyTorch** od společnosti Meta. Nad ní stojí **PyTorch Lightning**, která organizuje kód kolem trénování a zbavuje vývojáře opakujícího se šablonového kódu: cyklů, přepínání na GPU, ukládání modelů nebo záznamu výsledků. Instalace:
 
@@ -58,11 +58,11 @@ flowchart LR
 
 **Gradient** udává, jakým směrem a jak moc se chyba změní při změně jednotlivých vah. Optimalizátor se podle něj pohybuje opačným směrem, tedy tak, aby chyba klesala (připomíná to hledání minima ze SciPy, jen s miliony parametrů). Tato posloupnost se opakuje na mnoha dávkách dat, dokud chyba neklesne na přijatelnou úroveň.
 
-![PyTorch: Neuronová síť](../../imgs/pytorch-nn.jpg)
+![PyTorch: Neuronová síť](../../.gitbook/assets/pytorch-nn.jpg)
 
 ## Tensor a jeho vlastnosti
 
-Základním datovým objektem PyTorch je **tenzor** (*tensor*). Je to vícerozměrné pole čísel, v zásadě totéž co `ndarray` z NumPy, s důležitými rozdíly: tenzor může žít na **GPU** a umí sledovat operace pro výpočet gradientů.
+Základním datovým objektem PyTorch je **tenzor** (_tensor_). Je to vícerozměrné pole čísel, v zásadě totéž co `ndarray` z NumPy, s důležitými rozdíly: tenzor může žít na **GPU** a umí sledovat operace pro výpočet gradientů.
 
 ```python
 import torch
@@ -181,14 +181,14 @@ sit = nn.Sequential(
 
 **Vrstva** je stavební blok sítě, který provádí určitou transformaci vstupu. Modul `torch.nn` jich nabízí velké množství. Pro začátek stačí znát několik základních typů:
 
-| Vrstva | Použití |
-| --- | --- |
-| `nn.Linear(in, out)` | plně propojená vrstva: každý vstup je spojen s každým výstupem, základ většiny sítí |
-| `nn.Conv2d(...)` | konvoluční vrstva, hledá vzory v obrazech |
-| `nn.LSTM`, `nn.GRU`, `nn.Transformer...` | práce s posloupnostmi (text, časové řady) |
-| `nn.Dropout(p)` | náhodně vypíná část neuronů při trénování, brání přeučení |
-| `nn.BatchNorm1d(n)` | normalizace hodnot mezi vrstvami, stabilizuje a zrychluje učení |
-| `nn.Embedding(n, d)` | převod celočíselných identifikátorů (např. slov) na vektory |
+| Vrstva                                   | Použití                                                                             |
+| ---------------------------------------- | ----------------------------------------------------------------------------------- |
+| `nn.Linear(in, out)`                     | plně propojená vrstva: každý vstup je spojen s každým výstupem, základ většiny sítí |
+| `nn.Conv2d(...)`                         | konvoluční vrstva, hledá vzory v obrazech                                           |
+| `nn.LSTM`, `nn.GRU`, `nn.Transformer...` | práce s posloupnostmi (text, časové řady)                                           |
+| `nn.Dropout(p)`                          | náhodně vypíná část neuronů při trénování, brání přeučení                           |
+| `nn.BatchNorm1d(n)`                      | normalizace hodnot mezi vrstvami, stabilizuje a zrychluje učení                     |
+| `nn.Embedding(n, d)`                     | převod celočíselných identifikátorů (např. slov) na vektory                         |
 
 Vrstva `nn.Linear(vstupu, vystupu)` počítá `y = W·x + b`, kde `W` je matice vah a `b` posun. Obě se při trénování učí. Počet vstupů první vrstvy musí odpovídat velikosti dat a počet výstupů poslední úloze: jeden výstup pro předpověď čísla, `n` výstupů pro klasifikaci do `n` tříd.
 
@@ -196,12 +196,12 @@ Vrstva `nn.Linear(vstupu, vystupu)` počítá `y = W·x + b`, kde `W` je matice 
 
 Samotné lineární vrstvy za sebou by dávaly dohromady zase jen lineární funkci, bez ohledu na to, kolik jich naskládáme. **Aktivační funkce** vnášejí mezi vrstvy **nelinearitu**, a umožňují tak síti naučit se složité závislosti.
 
-| Funkce | Charakteristika | Typické použití |
-| --- | --- | --- |
-| `nn.ReLU()` | `max(0, x)`, jednoduchá a rychlá | skryté vrstvy (výchozí volba) |
-| `nn.Sigmoid()` | stlačí hodnoty do (0, 1) | pravděpodobnost při binární klasifikaci |
-| `nn.Tanh()` | stlačí hodnoty do (−1, 1) | skryté vrstvy, rekurentní sítě |
-| `nn.Softmax(dim=1)` | převede vektor na rozdělení pravděpodobností se součtem 1 | výstup při klasifikaci do více tříd |
+| Funkce              | Charakteristika                                           | Typické použití                         |
+| ------------------- | --------------------------------------------------------- | --------------------------------------- |
+| `nn.ReLU()`         | `max(0, x)`, jednoduchá a rychlá                          | skryté vrstvy (výchozí volba)           |
+| `nn.Sigmoid()`      | stlačí hodnoty do (0, 1)                                  | pravděpodobnost při binární klasifikaci |
+| `nn.Tanh()`         | stlačí hodnoty do (−1, 1)                                 | skryté vrstvy, rekurentní sítě          |
+| `nn.Softmax(dim=1)` | převede vektor na rozdělení pravděpodobností se součtem 1 | výstup při klasifikaci do více tříd     |
 
 ```python
 x = torch.tensor([-2.0, -0.5, 0.0, 1.5])
@@ -211,17 +211,17 @@ print(torch.sigmoid(x))     # hodnoty mezi 0 a 1
 print(torch.softmax(x, dim=0).sum())    # tensor(1.)
 ```
 
-![PyTorch: Aktivační funkce](../../imgs/pytorch-activations.jpg)
+![PyTorch: Aktivační funkce](../../.gitbook/assets/pytorch-activations.jpg)
 
 ## Ztrátová funkce (Loss Function)
 
 **Ztrátová funkce** měří, jak moc se předpověď sítě liší od správné hodnoty. Výsledkem je jedno číslo: čím menší, tím lepší. Trénování se snaží ztrátu minimalizovat. Volba závisí na typu úlohy:
 
-| Úloha | Ztráta | Poznámka |
-| --- | --- | --- |
-| regrese (předpověď čísla) | `nn.MSELoss()` | střední kvadratická chyba |
-| klasifikace do více tříd | `nn.CrossEntropyLoss()` | očekává „surové“ výstupy (logity), ne Softmax |
-| binární klasifikace | `nn.BCEWithLogitsLoss()` | zahrnuje Sigmoid |
+| Úloha                     | Ztráta                   | Poznámka                                      |
+| ------------------------- | ------------------------ | --------------------------------------------- |
+| regrese (předpověď čísla) | `nn.MSELoss()`           | střední kvadratická chyba                     |
+| klasifikace do více tříd  | `nn.CrossEntropyLoss()`  | očekává „surové“ výstupy (logity), ne Softmax |
+| binární klasifikace       | `nn.BCEWithLogitsLoss()` | zahrnuje Sigmoid                              |
 
 ```python
 ztrata = nn.MSELoss()
@@ -239,7 +239,7 @@ print(nn.CrossEntropyLoss()(logity, tridy))
 
 ## Optimalizátor (Optimizer)
 
-**Optimalizátor** je algoritmus, který na základě gradientů upravuje váhy sítě. Nejjednodušší je **SGD** (*stochastic gradient descent*), který posune každou váhu proti gradientu o malý krok. Nejpoužívanější v praxi je **Adam**, který kroky přizpůsobuje každému parametru a obvykle konverguje rychleji bez složitého ladění.
+**Optimalizátor** je algoritmus, který na základě gradientů upravuje váhy sítě. Nejjednodušší je **SGD** (_stochastic gradient descent_), který posune každou váhu proti gradientu o malý krok. Nejpoužívanější v praxi je **Adam**, který kroky přizpůsobuje každému parametru a obvykle konverguje rychleji bez složitého ladění.
 
 ```python
 optimalizator = torch.optim.Adam(sit.parameters(), lr=0.01)
@@ -250,7 +250,7 @@ Optimalizátoru předáme parametry sítě a **learning rate** (`lr`, rychlost u
 
 ## Dataset a DataLoader
 
-Model se neučí ze všech dat najednou, ale po **dávkách** (*batch*). K tomu slouží dvojice objektů. **`Dataset`** představuje sbírku příkladů a umí vrátit jeden příklad podle indexu. **`DataLoader`** nad ním vytváří dávky, v každé epoše data míchá a může je načítat paralelně.
+Model se neučí ze všech dat najednou, ale po **dávkách** (_batch_). K tomu slouží dvojice objektů. **`Dataset`** představuje sbírku příkladů a umí vrátit jeden příklad podle indexu. **`DataLoader`** nad ním vytváří dávky, v každé epoše data míchá a může je načítat paralelně.
 
 Pro data, která už máme jako tenzory, stačí `TensorDataset`:
 
@@ -288,11 +288,11 @@ class MojeData(Dataset):
 
 Kdybychom model hodnotili na stejných datech, na kterých se učil, dostali bychom příliš optimistický obraz. Mohl by si příklady jen „zapamatovat“ (přeučení). Proto se data **rozdělí na tři části**:
 
-| Množina | Účel | Typický podíl |
-| --- | --- | --- |
-| **trénovací** | z ní se model učí, podle ní se upravují váhy | 60–80 % |
-| **validační** | sleduje se na ní kvalita během trénování, slouží k ladění nastavení | 10–20 % |
-| **testovací** | použije se až úplně na konci pro nezávislé vyhodnocení | 10–20 % |
+| Množina       | Účel                                                                | Typický podíl |
+| ------------- | ------------------------------------------------------------------- | ------------- |
+| **trénovací** | z ní se model učí, podle ní se upravují váhy                        | 60–80 %       |
+| **validační** | sleduje se na ní kvalita během trénování, slouží k ladění nastavení | 10–20 %       |
+| **testovací** | použije se až úplně na konci pro nezávislé vyhodnocení              | 10–20 %       |
 
 ```python
 from torch.utils.data import random_split
@@ -320,7 +320,7 @@ Dva pojmy popisují, jak se trénování dělí v čase.
 
 **Batch size** (velikost dávky) je počet příkladů zpracovaných najednou, než se upraví váhy. Menší dávky dávají „hlučnější“ gradient a častější úpravy, větší jsou stabilnější a lépe využijí GPU, ale potřebují víc paměti. Běžné hodnoty jsou 16, 32, 64 nebo 128.
 
-**Epocha** (*epoch*) je jeden úplný průchod celou trénovací množinou. Model se obvykle učí desítky až stovky epoch. Počet **kroků** (úprav vah) v jedné epoše je počet příkladů dělený velikostí dávky.
+**Epocha** (_epoch_) je jeden úplný průchod celou trénovací množinou. Model se obvykle učí desítky až stovky epoch. Počet **kroků** (úprav vah) v jedné epoše je počet příkladů dělený velikostí dávky.
 
 ```python
 pocet_prikladu = 140
@@ -392,7 +392,7 @@ class LitRegrese(L.LightningModule):
 
 Všimněte si, že chybí všechny cykly, volání `zero_grad`, `backward` i `step` a práce se zařízením. Metoda `training_step` popisuje jen to, co se děje s **jednou dávkou**: vypočítá ztrátu a vrátí ji. Pomocí `self.log` zaznamenáváme sledované veličiny. Metody `validation_step`, `test_step` a bližší pohled na `configure_optimizers` jsou popsány v rozšiřující části.
 
-![PyTorch: Lightning](../../imgs/pytorch-lightning.jpg)
+![PyTorch: Lightning](../../.gitbook/assets/pytorch-lightning.jpg)
 
 ## Lightning Trainer
 

@@ -6,7 +6,7 @@ Než se pustíme do samotného jazyka, je užitečné pochopit, v jakém prostř
 
 Aby počítač mohl program provést, musí být zdrojový kód převeden do instrukcí, kterým procesor rozumí. Existují dva základní přístupy. U **kompilovaných jazyků**, například C, C++ nebo Rust, se celý program předem přeloží kompilátorem do strojového kódu. Výsledkem je spustitelný soubor (na Windows `.exe`), který lze spustit bez dalších nástrojů a který obvykle běží velmi rychle. Nevýhodou je, že po každé změně je nutné program znovu přeložit a výsledek je vázaný na konkrétní platformu.
 
-U **interpretovaných jazyků** se zdrojový kód nepřekládá předem, ale čte a provádí jej program zvaný interpret. Python patří do této skupiny. Správněji je však třeba říci, že jde o hybridní přístup: interpret CPython nejprve zdrojový kód přeloží do mezikódu, tzv. *bytecode*, a ten následně provádí ve svém virtuálním stroji. Tento mezikód můžete najít ve složkách `__pycache__` jako soubory s příponou `.pyc`. Programátor se o to nemusí starat, překlad probíhá automaticky při každém spuštění. Rozdíl mezi oběma přístupy shrnuje následující schéma.
+U **interpretovaných jazyků** se zdrojový kód nepřekládá předem, ale čte a provádí jej program zvaný interpret. Python patří do této skupiny. Správněji je však třeba říci, že jde o hybridní přístup: interpret CPython nejprve zdrojový kód přeloží do mezikódu, tzv. _bytecode_, a ten následně provádí ve svém virtuálním stroji. Tento mezikód můžete najít ve složkách `__pycache__` jako soubory s příponou `.pyc`. Programátor se o to nemusí starat, překlad probíhá automaticky při každém spuštění. Rozdíl mezi oběma přístupy shrnuje následující schéma.
 
 ```mermaid
 flowchart LR
@@ -50,7 +50,7 @@ Níže najdete postup pro jednotlivé operační systémy. Přepínejte mezi zá
 {% tab title="Windows" %}
 Základní cestou je stažení instalátoru z oficiálního webu [python.org](https://www.python.org/downloads/). Při spuštění instalátoru je důležité zaškrtnout volbu „Add python.exe to PATH“. Díky ní půjde příkaz `python` spustit z libovolné složky v terminálu.
 
-![Python Install PATH](../imgs/python-install-path.jpg)
+![Python Install PATH](../.gitbook/assets/python-install-path.jpg)
 
 {% hint style="warning" %}
 Bez zaškrtnutí volby PATH Windows příkaz `python` nenajde. Jde o jednu z nejčastějších začátečnických chyb.
@@ -62,7 +62,7 @@ Alternativou je správce balíčků `winget`, který je součástí moderních v
 winget install Python.Python.3.12
 ```
 
-Python lze také nainstalovat z Microsoft Store. Tato varianta je pohodlná, ale někdy má drobná omezení v přístupu k souborům a cestám, proto je pro vývoj vhodnější instalátor z python.org nebo `winget`. Windows také obsahuje příkaz `py`, tzv. *Python Launcher*, který umí vybrat mezi několika nainstalovanými verzemi, například `py -3.12`.
+Python lze také nainstalovat z Microsoft Store. Tato varianta je pohodlná, ale někdy má drobná omezení v přístupu k souborům a cestám, proto je pro vývoj vhodnější instalátor z python.org nebo `winget`. Windows také obsahuje příkaz `py`, tzv. _Python Launcher_, který umí vybrat mezi několika nainstalovanými verzemi, například `py -3.12`.
 {% endtab %}
 
 {% tab title="macOS" %}
@@ -140,7 +140,7 @@ Druhé číslo označuje **vedlejší verzi** (minor), například 3.11, 3.12 ne
 
 Třetí číslo je **opravná verze** (patch). Vychází opakovaně během roku a obsahuje pouze opravy chyb a bezpečnostní záplaty bez nových vlastností. Na nejnovější opravnou verzi dané vedlejší verze je proto vždy vhodné přejít.
 
-Každá vedlejší verze má omezenou životnost, zhruba pět let od vydání. Nejdříve se opravují všechny chyby, v posledních letech už jen bezpečnostní problémy. Poté nastává tzv. *end of life* (EOL), kdy verze nedostává ani bezpečnostní záplaty a její používání je rizikem. Aktuální přehled vydání a konce podpory najdete na stránce [devguide.python.org/versions](https://devguide.python.org/versions/).
+Každá vedlejší verze má omezenou životnost, zhruba pět let od vydání. Nejdříve se opravují všechny chyby, v posledních letech už jen bezpečnostní problémy. Poté nastává tzv. _end of life_ (EOL), kdy verze nedostává ani bezpečnostní záplaty a její používání je rizikem. Aktuální přehled vydání a konce podpory najdete na stránce [devguide.python.org/versions](https://devguide.python.org/versions/).
 
 ```mermaid
 flowchart LR
@@ -170,19 +170,19 @@ Nástroje jako pip nebo uv pak odmítnou projekt nainstalovat do nevyhovujícíh
 
 Program v Pythonu je v zásadě textový soubor, takže ho lze psát i v Poznámkovém bloku. Pohodlná práce ale vyžaduje nástroje, které umí doplňovat kód, upozorňovat na chyby, procházet projekt a ladit program. Dvě nejrozšířenější volby jsou Visual Studio Code a PyCharm.
 
-**Visual Studio Code** (VS Code) je lehký, zdarma dostupný editor od Microsoftu. Sám o sobě Python příliš neumí, ale po instalaci rozšíření *Python* (a obvykle také *Pylance* pro analýzu kódu) z něj vznikne plnohodnotné vývojové prostředí. Je univerzální, takže stejný editor využijete i pro jiné jazyky, Markdown nebo konfigurační soubory.
+**Visual Studio Code** (VS Code) je lehký, zdarma dostupný editor od Microsoftu. Sám o sobě Python příliš neumí, ale po instalaci rozšíření _Python_ (a obvykle také _Pylance_ pro analýzu kódu) z něj vznikne plnohodnotné vývojové prostředí. Je univerzální, takže stejný editor využijete i pro jiné jazyky, Markdown nebo konfigurační soubory.
 
-![Python - VS Code (source: https://code.visualstudio.com/docs/languages/python)](../imgs/python-vscode.png)
+![Python - VS Code (source: https://code.visualstudio.com/docs/languages/python)](../.gitbook/assets/python-vscode.png)
 
 **PyCharm** od společnosti JetBrains je naproti tomu specializované prostředí určené právě pro Python. Nabízí pokročilé refaktorování, silnou analýzu kódu, integrovaný debugger a práci s virtuálními prostředími hned po instalaci. Existuje zdarma dostupná edice Community a placená Professional, která navíc podporuje například webové frameworky a práci s databázemi. Za svou komplexnost si PyCharm žádá více paměti a delší dobu spouštění.
 
-![Python - PyCharm (source: https://www.jetbrains.com/pycharm/download/?section=windows)](../imgs/python-pycharm.jpg)
+![Python - PyCharm (source: https://www.jetbrains.com/pycharm/download/?section=windows)](../.gitbook/assets/python-pycharm.jpg)
 
 Která volba je lepší, je především věcí zvyku. Pro tento kurz je vhodné jakékoliv z nich, důležité je naučit se základní schopnosti, které obě prostředí sdílejí: spuštění souboru jedním kliknutím, vybrání správného interpretu, práce s integrovaným terminálem a ladění pomocí breakpointů.
 
 ### Spuštění kódu
 
-Kód lze spouštět několika způsoby. V editoru obvykle stačí kliknout na tlačítko *Run*. Totéž provedete v terminálu příkazem `python soubor.py`. Pokud chcete spustit modul jako součást balíčku, použijete přepínač `-m`:
+Kód lze spouštět několika způsoby. V editoru obvykle stačí kliknout na tlačítko _Run_. Totéž provedete v terminálu příkazem `python soubor.py`. Pokud chcete spustit modul jako součást balíčku, použijete přepínač `-m`:
 
 ```console
 python -m moje_aplikace.hlavni
@@ -194,9 +194,9 @@ Pro rychlé vyzkoušení jednoho výrazu lze použít i přepínač `-c`:
 python -c "print(sum(range(10)))"
 ```
 
-Při ladění je užitečný *debugger*. Na řádek, kde chcete běh programu zastavit, umístíte breakpoint, program spustíte v režimu ladění a pak můžete krokovat řádek po řádku a sledovat hodnoty proměnných. Je to mnohem efektivnější než zahlcovat kód voláním `print`.
+Při ladění je užitečný _debugger_. Na řádek, kde chcete běh programu zastavit, umístíte breakpoint, program spustíte v režimu ladění a pak můžete krokovat řádek po řádku a sledovat hodnoty proměnných. Je to mnohem efektivnější než zahlcovat kód voláním `print`.
 
-![Python: PyCharm Debug (source: https://www.jetbrains.com/help/pycharm/debugging-your-first-python-application.html)](../imgs/python-pycharm-debug.png)
+![Python: PyCharm Debug (source: https://www.jetbrains.com/help/pycharm/debugging-your-first-python-application.html)](../.gitbook/assets/python-pycharm-debug.png)
 
 {% hint style="info" %}
 Pro bližší informace doporučujeme například viz: https://www.jetbrains.com/help/pycharm/debugging-your-first-python-application.html.
@@ -206,7 +206,7 @@ Pro bližší informace doporučujeme například viz: https://www.jetbrains.com
 
 Pro práci s daty a při výuce se hojně využívá další způsob spouštění kódu: **Jupyter Notebook**. Notebook je dokument složený z buněk. Buňka může obsahovat kód, který lze spustit samostatně, nebo formátovaný text v Markdownu. Výsledek spuštěné buňky, včetně tabulek a grafů, se zobrazí přímo pod ní. Stav proměnných se mezi buňkami zachovává, takže data můžete načíst jednou a pak s nimi experimentovat v dalších krocích, aniž byste museli vše spouštět od začátku.
 
-![Jupyter Notebook](../imgs/jupyter.png)
+![Jupyter Notebook](../.gitbook/assets/jupyter.png)
 
 Notebooky mají příponu `.ipynb`. Nainstalujete a spustíte je například takto:
 
@@ -257,7 +257,7 @@ Stejně funguje i import modulů ze standardní knihovny, například `import ma
 
 Typická struktura menšího projektu může vypadat následovně:
 
-```text
+```
 muj_projekt/
 ├── src/
 │   └── moje_aplikace/
@@ -352,7 +352,7 @@ source .venv/bin/activate
 
 Po aktivaci se před výzvou terminálu objeví název prostředí, například `(.venv)`. Příkazy `python` a `pip` nyní odkazují na izolované prostředí. Aktivaci ukončíte příkazem `deactivate`.
 
-![Python: .venv](../imgs/python-venv.png)
+![Python: .venv](../.gitbook/assets/python-venv.png)
 
 {% hint style="warning" %}
 Složku `.venv` nikdy neukládáme do verzovacího systému Git, přidáme ji do `.gitignore`. Je závislá na konkrétním počítači a lze ji kdykoliv znovu vytvořit. Do repozitáře patří pouze soubor, který popisuje, jaké závislosti projekt potřebuje. O těch pojednává následující část.
@@ -375,8 +375,7 @@ pip show numpy
 
 Příkaz `pip install` si stáhne balíček z PyPI včetně všech knihoven, na kterých balíček závisí (tzv. tranzitivní závislosti). Doporučeným zápisem je `python -m pip install ...`, protože tím máte jistotu, že pip patří ke stejnému interpretu, který právě používáte.
 
-![PIP](../imgs/pip.png)
-
+![PIP](../.gitbook/assets/pip.png)
 
 Nástroj **uv** je novější alternativa, kterou vyvíjí společnost Astral. Je napsán v jazyce Rust a je výrazně rychlejší než pip. Jedním nástrojem nahrazuje několik dalších: umí vytvářet virtuální prostředí, instalovat balíčky, spravovat verze samotného Pythonu a řídit celý projekt. Ve své základní podobě je rozhraní podobné pipu:
 
@@ -415,7 +414,7 @@ Pracovní postup je podobný jako u uv. V praxi se můžete setkat s oběma nás
 Nejjednodušší způsob, jak zaznamenat závislosti projektu, je soubor `requirements.txt`. Je to prostý textový soubor, v němž každý řádek obsahuje jeden balíček, případně s omezením na verzi:
 
 {% code title="requirements.txt" %}
-```text
+```
 numpy==1.26.4
 pandas>=2.0,<3.0
 requests

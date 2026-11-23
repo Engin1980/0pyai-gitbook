@@ -1,6 +1,6 @@
 # OpenCV
 
-Člověk rozpozná obličej, přečte text nebo se vyhne překážce bez přemýšlení. Pro počítač je ale obrázek jen velká tabulka čísel a aby z ní „viděl“, musí výpočty provést algoritmy. Knihovna **OpenCV** (*Open Source Computer Vision Library*) je nejpoužívanější sada nástrojů pro zpracování obrazu a počítačové vidění. Obsahuje stovky ověřených algoritmů od načtení obrázku po detekci hran, a to s velmi rychlým jádrem v jazyce C++. V této kapitole zjistíme, jak se obrázek v počítači reprezentuje, naučíme se obrázky načítat, zobrazovat a ukládat, převádět mezi barevnými prostory, měnit velikost a geometrii, prahovat, vyhlazovat, hledat hrany, používat morfologické operace a pracovat s obrazem z kamery.
+Člověk rozpozná obličej, přečte text nebo se vyhne překážce bez přemýšlení. Pro počítač je ale obrázek jen velká tabulka čísel a aby z ní „viděl“, musí výpočty provést algoritmy. Knihovna **OpenCV** (_Open Source Computer Vision Library_) je nejpoužívanější sada nástrojů pro zpracování obrazu a počítačové vidění. Obsahuje stovky ověřených algoritmů od načtení obrázku po detekci hran, a to s velmi rychlým jádrem v jazyce C++. V této kapitole zjistíme, jak se obrázek v počítači reprezentuje, naučíme se obrázky načítat, zobrazovat a ukládat, převádět mezi barevnými prostory, měnit velikost a geometrii, prahovat, vyhlazovat, hledat hrany, používat morfologické operace a pracovat s obrazem z kamery.
 
 ## Účel a využití OpenCV
 
@@ -53,9 +53,12 @@ print(obraz.shape)     # (100, 200, 3)
 print(obraz.dtype)     # uint8
 print(obraz[10, 10])   # hodnoty jednoho pixelu: [255 0 0]
 ```
-![OpenCV: Representation](../../imgs/opencv-representation.jpg)
 
-TODO HINT: Pozor na pořadí os: výška (řádky) je první, šířka (sloupce) druhá, takže pixel na souřadnicích (x, y) čteme jako `obraz[y, x]`.
+![OpenCV: Representation](../../.gitbook/assets/opencv-representation.jpg)
+
+{% hint style="warning" %}
+Pozor na pořadí os: výška (řádky) je první, šířka (sloupce) druhá, takže pixel na souřadnicích (x, y) čteme jako `obraz[y, x]`.
+{% endhint %}
 
 ## Načítání a ukládání obrázků
 
@@ -110,9 +113,9 @@ Barvu lze popsat různými způsoby, kterým říkáme **barevné prostory** (mo
 
 **Grayscale** (stupně šedi) má jen jeden kanál s jasem. Zjednodušuje zpracování a řada algoritmů (hrany, prahování) pracuje právě s ním.
 
-**HSV** popisuje barvu pomocí odstínu (*Hue*, 0 až 179 v OpenCV), sytosti (*Saturation*) a jasu (*Value*). Hodí se pro hledání objektů podle barvy, protože odstín je do značné míry nezávislý na osvětlení.
+**HSV** popisuje barvu pomocí odstínu (_Hue_, 0 až 179 v OpenCV), sytosti (_Saturation_) a jasu (_Value_). Hodí se pro hledání objektů podle barvy, protože odstín je do značné míry nezávislý na osvětlení.
 
-![OpenCV: Color models](../../imgs/opencv-color-models.jpg)
+![OpenCV: Color models](../../.gitbook/assets/opencv-color-models.jpg)
 
 ## Převod barevných prostorů
 
@@ -184,11 +187,11 @@ otoceny = cv2.warpAffine(img, M, (sirka, vyska))
 
 Pro **perspektivní** transformaci, například „narovnání“ dokumentu vyfoceného šikmo, slouží `cv2.getPerspectiveTransform` (z čtyř bodů vstupu a čtyř bodů výstupu) a `cv2.warpPerspective`.
 
-![OpenCV: Transformace](../../imgs/opencv-transformations.png)
+![OpenCV: Transformace](../../.gitbook/assets/opencv-transformations.png)
 
 ## Prahování obrázků
 
-**Prahování** (*thresholding*) je nejjednodušší způsob segmentace: pixely nad zvolenou hranicí (prahem) se nastaví na jednu hodnotu a ostatní na druhou. Výsledkem je černobílý obrázek, který odděluje popředí od pozadí.
+**Prahování** (_thresholding_) je nejjednodušší způsob segmentace: pixely nad zvolenou hranicí (prahem) se nastaví na jednu hodnotu a ostatní na druhou. Výsledkem je černobílý obrázek, který odděluje popředí od pozadí.
 
 ```python
 sedy = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
@@ -203,12 +206,11 @@ print("Zvolený práh:", prah)
 
 Funkce vrací nalezený práh a výsledný obrázek. Typ prahování určuje konstanta: `THRESH_BINARY` (pixel nad prahem bílý), `THRESH_BINARY_INV` (obráceně), `THRESH_TRUNC`, `THRESH_TOZERO`. **Otsuova metoda** sama zvolí práh tak, aby se obě skupiny pixelů co nejvíce lišily, což funguje dobře u obrázků s výrazným pozadím a popředím.
 
-![OpenCV: Thresholding II](../../imgs/opencv-thresholding-II.png)
-![OpenCV: Thresholding III](../../imgs/opencv-thresholding-III.png)
+![OpenCV: Thresholding II](../../.gitbook/assets/opencv-thresholding-II.png) ![OpenCV: Thresholding III](../../.gitbook/assets/opencv-thresholding-III.png)
 
 ## Rozostření a vyhlazování
 
-Vyhlazení (rozostření) potlačuje šum a drobné detaily. Je důležitým krokem před detekcí hran, protože šum jinak vytváří falešné hrany. Princip spočívá v tom, že se každý pixel nahradí vážený průměrem svého okolí. Velikost okolí určuje velikost **jádra** (*kernel*), vždy liché číslo.
+Vyhlazení (rozostření) potlačuje šum a drobné detaily. Je důležitým krokem před detekcí hran, protože šum jinak vytváří falešné hrany. Princip spočívá v tom, že se každý pixel nahradí vážený průměrem svého okolí. Velikost okolí určuje velikost **jádra** (_kernel_), vždy liché číslo.
 
 ```python
 prumer = cv2.blur(img, (5, 5))                      # jednoduchý průměr
@@ -232,7 +234,7 @@ cv2.imwrite("hrany.png", hrany)
 
 Dva prahy určují citlivost. Hrany se silnějším gradientem než horní práh jsou jisté, hrany pod dolním prahem se zahodí a ty mezi nimi se zachovají jen tehdy, pokud navazují na jisté hrany. Hodnoty je obvykle potřeba vyladit podle konkrétního obrázku. Poměr horního prahu k dolnímu bývá 2:1 až 3:1.
 
-![OpenCV: Detekce hran](../../imgs/opencv-canny.png)
+![OpenCV: Detekce hran](../../.gitbook/assets/opencv-canny.png)
 
 ## Morfologické operace
 
@@ -264,8 +266,7 @@ otevreni = cv2.morphologyEx(binarni, cv2.MORPH_OPEN, jadro)    # eroze, pak dila
 uzavreni = cv2.morphologyEx(binarni, cv2.MORPH_CLOSE, jadro)   # dilatace, pak eroze: zacelí díry
 ```
 
-![OpenCV: Morfologie](../../imgs/opencv-morphology.png)
-
+![OpenCV: Morfologie](../../.gitbook/assets/opencv-morphology.png)
 
 ## Práce s kamerou
 
@@ -295,7 +296,7 @@ kamera.release()                      # uvolnění kamery
 cv2.destroyAllWindows()
 ```
 
-Každý průchod smyčkou zpracuje jeden snímek (*frame*). Všechny dříve popsané operace, jako převod barev, vyhlazení nebo detekce hran, se dají použít na jednotlivé snímky, a tak vznikne zpracování obrazu v reálném čase. Pro čtení videosouboru stačí místo čísla kamery zadat cestu k souboru.
+Každý průchod smyčkou zpracuje jeden snímek (_frame_). Všechny dříve popsané operace, jako převod barev, vyhlazení nebo detekce hran, se dají použít na jednotlivé snímky, a tak vznikne zpracování obrazu v reálném čase. Pro čtení videosouboru stačí místo čísla kamery zadat cestu k souboru.
 
 {% hint style="info" %}
 Po skončení práce vždy kameru uvolněte voláním `release()`. Jinak může zůstat blokovaná pro jiné programy.

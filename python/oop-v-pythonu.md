@@ -111,7 +111,7 @@ print(u.zustatek())      # 150
 print(u._Ucet__zustatek) # 150, technicky to jde, ale takto se to nedělá
 ```
 
-![Zapouzdření](../imgs/encap.png)
+![Zapouzdření](../.gitbook/assets/encap.png)
 
 Filozofie Pythonu je shrnuta větou _„We are all consenting adults here“_, tedy že programátoři jsou dospělí a jsou schopni respektovat konvence i bez vynucování. Pro běžné atributy proto stačí jedno podtržítko a dvě se používají jen výjimečně.
 

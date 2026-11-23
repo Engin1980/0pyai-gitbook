@@ -1,4 +1,4 @@
-# SciPy - Extended
+# Scipy - Extended
 
 > Rozšiřující část je nepovinná a slouží pouze jako další informační zdroj pro studenty.
 
@@ -9,9 +9,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 ```
 
-## Řešení diferenciálních rovnic (solve_ivp)
+## Řešení diferenciálních rovnic (solve\_ivp)
 
-**Diferenciální rovnice** popisují, jak se veličina mění v čase, například rychlost úbytku radioaktivní látky, pohyb kyvadla nebo šíření nákazy. Mnohé z nich nemají analytické řešení, a proto se řeší numericky. Funkce **`solve_ivp`** (*initial value problem*) řeší úlohu s počáteční podmínkou: známe stav v čase 0 a zajímá nás vývoj v čase.
+**Diferenciální rovnice** popisují, jak se veličina mění v čase, například rychlost úbytku radioaktivní látky, pohyb kyvadla nebo šíření nákazy. Mnohé z nich nemají analytické řešení, a proto se řeší numericky. Funkce **`solve_ivp`** (_initial value problem_) řeší úlohu s počáteční podmínkou: známe stav v čase 0 a zajímá nás vývoj v čase.
 
 Rovnice se zapisuje jako funkce `f(t, y)`, která vrací derivaci `y` v čase `t`. Příklad: exponenciální rozpad `dy/dt = −0,5·y` s počáteční hodnotou `y(0) = 10`.
 
@@ -42,7 +42,7 @@ def kyvadlo(t, stav):
 res = solve_ivp(kyvadlo, (0, 10), y0=[1.0, 0.0], t_eval=np.linspace(0, 10, 300))
 ```
 
-![Scipy: Diferenciální rovnice](../../imgs/scipy-pendulum.png)
+![Scipy: Diferenciální rovnice](../../.gitbook/assets/scipy-pendulum.png)
 
 ## Vlastní čísla a vlastní vektory
 
@@ -88,7 +88,7 @@ plt.show()
 
 Koeficient determinace R² udává, jakou část variability dat model vysvětluje (blíží se 1 u velmi dobré shody). Složitější regresní modely, s více proměnnými nebo statistickým výstupem, najdete v knihovnách `statsmodels` a `scikit-learn`.
 
-## Prokládání křivek (curve_fit)
+## Prokládání křivek (curve\_fit)
 
 Když tvar závislosti známe (z teorie), ale neznáme její parametry, použijeme **`curve_fit`**. Zadáme model jako funkci s parametry a data. Funkce metodou nejmenších čtverců najde optimální hodnoty parametrů.
 
@@ -154,7 +154,7 @@ plt.show()
 
 Ve spektru uvidíme dva vrcholy: na 50 Hz a na 120 Hz, tedy přesně na frekvencích, ze kterých jsme signál složili.
 
-![SciPy: Fourierova transformace](../../imgs/scipy-ft.png)
+![SciPy: Fourierova transformace](../../.gitbook/assets/scipy-ft.png)
 
 ## Filtrace signálů
 
@@ -194,7 +194,7 @@ print(obalka.vertices)                         # indexy bodů na obvodu
 
 ## Řídké matice (scipy.sparse)
 
-V mnoha úlohách (sítě, textová data, diskretizace rovnic) jsou matice velké, ale téměř celé tvořené nulami. Uložit všechny nuly by bylo plýtvání pamětí. **Řídká matice** (*sparse matrix*) uchovává jen nenulové prvky a jejich pozice.
+V mnoha úlohách (sítě, textová data, diskretizace rovnic) jsou matice velké, ale téměř celé tvořené nulami. Uložit všechny nuly by bylo plýtvání pamětí. **Řídká matice** (_sparse matrix_) uchovává jen nenulové prvky a jejich pozice.
 
 ```python
 from scipy import sparse

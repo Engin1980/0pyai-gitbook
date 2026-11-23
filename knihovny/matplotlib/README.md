@@ -31,7 +31,7 @@ plt.plot(x, y)
 plt.show()
 ```
 
-![MatPlotLib: Simple](../../imgs/pltSimple.jpg)
+![MatPlotLib: Simple](../../.gitbook/assets/pltSimple.jpg)
 
 Takto zapsaný graf využívá implicitní „aktuální“ obrázek, který `pyplot` udržuje na pozadí. Je to pohodlné pro rychlé experimenty. Pro složitější grafy a pro vlastní programy se ale doporučuje explicitní přístup, který popíšeme v následující části a který budeme v dalších ukázkách používat.
 
@@ -48,7 +48,8 @@ flowchart TD
     A1 --> D["data: čáry, body, sloupce"]
     A1 --> T["titulek, popisky, legenda"]
 ```
-![MatPlotLib: Struktura](../../imgs/pltStructure.jpg)
+
+![MatPlotLib: Struktura](../../.gitbook/assets/pltStructure.jpg)
 
 Doporučený způsob vytvoření grafu je funkce **`plt.subplots`**, která vrátí dvojici `(fig, ax)`. Kreslení pak provádíme metodami objektu `ax`:
 
@@ -59,7 +60,7 @@ ax.set_title("Druhé mocniny")
 plt.show()
 ```
 
-Tento tzv. *objektový* přístup je přehlednější, protože je vždy jasné, do kterého grafu právě kreslíme. Od stavového přístupu s `plt.plot` se liší jen drobně: metody mají prefix `set_` (`ax.set_title`, `ax.set_xlabel`), zatímco `pyplot` používá krátké názvy (`plt.title`, `plt.xlabel`).
+Tento tzv. _objektový_ přístup je přehlednější, protože je vždy jasné, do kterého grafu právě kreslíme. Od stavového přístupu s `plt.plot` se liší jen drobně: metody mají prefix `set_` (`ax.set_title`, `ax.set_xlabel`), zatímco `pyplot` používá krátké názvy (`plt.title`, `plt.xlabel`).
 
 ## Vytvoření grafu a spojnicový graf
 
@@ -83,7 +84,7 @@ ax.plot(x, np.cos(x))
 plt.show()
 ```
 
-![MatPlotLib: Sin](../../imgs/pltSin.jpg)
+![MatPlotLib: Sin](../../.gitbook/assets/pltSin.jpg)
 
 ## Bodový graf (scatter)
 
@@ -109,7 +110,7 @@ plt.show()
 
 Parametr `c` určuje barvu, `s` velikost bodů, `cmap` barevnou škálu a `alpha` průhlednost (0 až 1), která pomáhá, když se body překrývají.
 
-![MatPlotLib: Scatter](../../imgs/pltScatter.jpg)
+![MatPlotLib: Scatter](../../.gitbook/assets/pltScatter.jpg)
 
 ## Sloupcový graf (bar)
 
@@ -139,11 +140,11 @@ ax.legend()
 plt.show()
 ```
 
-![MatPlotLib : Bar](../../imgs/pltBar.jpg)
+![MatPlotLib : Bar](../../.gitbook/assets/pltBar.jpg)
 
 ## Histogram (hist)
 
-**Histogram** ukazuje, jak jsou hodnoty rozloženy. Rozdělí rozsah dat do intervalů (*binů*) a spočítá, kolik hodnot padlo do každého z nich. Používá se pro zjištění tvaru rozdělení, odlehlých hodnot nebo šíře dat.
+**Histogram** ukazuje, jak jsou hodnoty rozloženy. Rozdělí rozsah dat do intervalů (_binů_) a spočítá, kolik hodnot padlo do každého z nich. Používá se pro zjištění tvaru rozdělení, odlehlých hodnot nebo šíře dat.
 
 ```python
 rng = np.random.default_rng(0)
@@ -158,7 +159,7 @@ plt.show()
 
 Hlavním parametrem je `bins`, tedy počet intervalů (nebo jejich hranice). Příliš málo binů skryje strukturu, příliš mnoho vytvoří šum, proto je dobré vyzkoušet několik hodnot. Parametr `density=True` normalizuje histogram tak, aby plocha byla 1, což je užitečné pro porovnání s teoretickým rozdělením.
 
-![MatPlotLib: Histogram](../../imgs/pltHistogram.jpg)
+![MatPlotLib: Histogram](../../.gitbook/assets/pltHistogram.jpg)
 
 ## Název grafu a popisky os
 
@@ -178,7 +179,7 @@ ax.set_ylabel("Distance [m]")
 plt.show()
 ```
 
-![MatPlotLib: Labels & Legenda](../../imgs/pltLegenda.jpg)
+![MatPlotLib: Labels & Legenda](../../.gitbook/assets/pltLegenda.jpg)
 
 U delších textů lze nastavit velikost písma (`fontsize=14`), tučné písmo (`fontweight="bold"`) a pro celý obrázek použít `fig.suptitle("...")`. Matplotlib umí ve textech zobrazit i matematické vzorce ve stylu LaTeXu, například `ax.set_ylabel(r"$y = x^2$")`.
 
@@ -251,8 +252,7 @@ plt.show()
 
 Parametr `figsize=(šířka, výška)` udává velikost obrázku v palcích. Pro jeden řádek nebo sloupec grafů je vrácené pole jednorozměrné (`osy[0]`, `osy[1]`). Pokud mají grafy sdílet osu, nastaví se `sharex=True` nebo `sharey=True`. Volání `fig.tight_layout()` zabrání překrývání popisků.
 
-
-![MatPlotLib: SubPlots](../../imgs/pltSubPlots.jpg)
+![MatPlotLib: SubPlots](../../.gitbook/assets/pltSubPlots.jpg)
 
 ## Ukládání grafů
 
